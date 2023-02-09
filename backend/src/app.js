@@ -12,6 +12,14 @@ const app = express();
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
+const homepageRouter = require("./routes/homepage")
+const applicantsRouter = require("./routes/applicants")
+
+app.set("view engine", "ejs")
+
+app.use("/", homepageRouter)
+app.use("/applicant", applicantsRouter)
+
 app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 
 app.get('/', (req, res, next) => {
