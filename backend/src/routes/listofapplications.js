@@ -1,9 +1,7 @@
 const express = require('express');
-const app = express();
+const router = express.Router();
 
-app.set('view engine', 'ejs');
-
-app.get('/list-of-applications', (req, res) => {
+router.get('/list-of-applications', (req, res) => {
   res.render('listofapplications', {
     applicants: [
       { name: 'John Doe', application: 'Cover Letter', date: '01/01/2023' },
@@ -17,6 +15,4 @@ app.get('/list-of-applications', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+module.exports = router;
