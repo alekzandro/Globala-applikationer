@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const Logerror = require('./util/ErrorHandler');
 const bodyparser = require('body-parser');
-
 require('dotenv').config();
 
 const ROOT_DIR = path.join(__dirname, '..');
@@ -15,10 +14,14 @@ app.use(bodyparser.urlencoded({extended: true}));
 const homepageRouter = require("./routes/homepage")
 const applicantsRouter = require("./routes/applicants")
 
+app.set('views',__dirname + '/views')
 app.set("view engine", "ejs")
+
+const registrationRouter = require('./routes/registration')
 
 app.use("/", homepageRouter)
 app.use("/applicant", applicantsRouter)
+app.use('/register',registrationRouter);
 
 app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 
