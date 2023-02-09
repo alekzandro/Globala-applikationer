@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> registration </title>
+    </head>
+    <div>
+        <h2> Registration page</h3>
+    </div>
+    <% if(status){ %>
+        <div>
+            <p>registrering user <%= user %> was <%= status %> </p>
+        </div>
+    <% }; %>
+    <body>
+        <div>
+            <form method="POST" action="/register/register_view">
+                <p> Username: </p> <input type="text" name="username"/>
+                <p> Password: </p> <input type="password" name="password"/>
+                <p> <input type="submit" value="Submit"/> </p>
+            </form>
+        </div>
+    </body>
+</html>
