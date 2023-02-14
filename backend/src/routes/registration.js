@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
+const controller = require('../controller/Controller')
 
 router.route('/register_view').get((req, res, next) => {
-    controller = req.app.locals.controller;
     controller.testDatabaseConnection();
     if (req.auth){
         // User is already logged in ofcourse they should not be able to access register page

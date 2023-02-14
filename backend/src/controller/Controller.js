@@ -14,4 +14,10 @@ class Controller {
     }
 }
 
-module.exports = {Controller};
+// Creating a controller singleton and freezing the object 
+// to not allow changes to its properties.
+const controller = new Controller();
+Object.freeze(controller);
+
+// exporting singleton instance, not class
+module.exports = controller;

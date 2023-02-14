@@ -9,11 +9,6 @@ const ROOT_DIR = path.join(__dirname, '..');
 
 const app = express();
 
-const {Controller} = require('./controller/Controller')
-
-//making a controller instance globally accessable across express app
-//to access controller from a router use: req.app.locals.controller
-app.locals.controller = new Controller();
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
