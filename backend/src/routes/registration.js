@@ -20,11 +20,17 @@ router.route('/register_view').get((req, res, next) => {
  * When a client registers with a username and password
  * if register successfull view is rerendered with a success message else fail message
  */
-router.route('/register_view').post((req, res, next) => {
-    const body = req.body;
-    const username = body.username;
-    cookieHandler.sendAuthCookie(username, res); // testing cookies
-    res.render("registration_page", {status:'successfull', user:username}) // if registration is successfull 
+router.route('/register_view').post(async (req, res, next) => {
+    try{
+        const body = req.body;
+        console.log(body)
+        const registerStatus = await controller.registerUser(body.username, body.password, body.pnr, body.email, body.name, body.surname);
+        console.log(`found user:\n${registerStatus}`)
+       // cookieHandler.sendAuthCookie(username, res); // testing cookies
+        res.render("registration_page", {status:'successfull', user:body.username}) 
+    } catch(err) {
+
+    }// if registration is successfull 
 })
 
 module.exports = router;
