@@ -16,28 +16,25 @@ class RegDAO {
         Person.createModel(this.database);
     }
 
-    async test_connection (){
+    async testConnection (){
         try {
             await this.database.authenticate();
-            console.log("SUCESS");
+            console.log("DB CONNECTION SUCCESS");
         } catch (error) {
-            console.log ("FAIL");
+            console.log ("DB CONNECTION FAIL");
         }
     }
 
     async findPersonByIdentifiers (username=null, email=null, pnr=null) {
         try {
             const validIdentifiers = [{username: username},{email: email},{pnr: pnr}].filter(elem => elem[Object.keys(elem)[0]] !== null)
+            if (validIdentifiers.length === 0) return null;
             const foundPerson = await Person.findAll({
-                //attributes: Person.ATTRIBUTES,
                 where: {
                     [Op.or]: validIdentifiers
                 }
             });
-            console.log("done, foundpers: ")
-            console.log(foundPerson)
             if (foundPerson.length === 0) return null;
-            console.log("done")
             return this.createPersonDTO(foundPerson[0]);
         } catch (error){
             throw error;
@@ -46,16 +43,6 @@ class RegDAO {
 
     async insertNewPerson(username, email, pnr, password, name, surname){
         try {
-            const data = {
-                person_id: "DEFAULT",
-                name: name,
-                surname: surname,
-                pnr: pnr,
-                email: email,
-                password: password,
-                username: username,
-            }
-            console.log(data)
             const newPerson = await Person.create({
                 name: name,
                 surname: surname,
@@ -64,8 +51,6 @@ class RegDAO {
                 password: password,
                 username: username,
             });
-            console.log("past it")
-            console.log(newPerson);
         } catch (error) {
             throw error;
         }

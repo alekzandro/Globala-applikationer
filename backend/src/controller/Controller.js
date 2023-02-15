@@ -1,4 +1,5 @@
 const {RegDAO} = require('../integration/RegDAO')
+const validator = require('../util/Validator')
 
 class Controller {
     constructor () {
@@ -7,10 +8,9 @@ class Controller {
 
     async registerUser (username, password, pnr, email, name, surname){
         try {
-            if (username.length <= 0 || password.length < 6 || pnr.length < 0 || email.length < 6) return false; //Extremely basic validator
+            if (!validator.validateRegisterForm(username, password, pnr, email, name, surname)) return false; //Extremely basic validator
             const res = await this.regDAO.findPersonByIdentifiers(username, email, pnr);
             if (res !== null) return false;
-            console.log ("insert start ctrl")
             await this.regDAO.insertNewPerson(username, password, pnr, email, name, surname)
             return true;
         } catch (error) {
@@ -20,9 +20,9 @@ class Controller {
 
     async testDatabaseConnection (){
         try {
-            await this.regDAO.test_connection();
+            await this.regDAO.testConnection();
         } catch (error) {
-            
+            throw error;
         }
     }
 }
