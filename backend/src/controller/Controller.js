@@ -8,7 +8,7 @@ class Controller {
 
     async registerUser (username, password, pnr, email, name, surname){
         try {
-            if (!validator.validateRegisterForm(username, password, pnr, email, name, surname)) return false; //Extremely basic validator
+            if (!validator.validateRegisterForm(username, password, pnr, email, name, surname)) return false; 
             const res = await this.regDAO.findPersonByIdentifiers(username, email, pnr);
             if (res !== null) return false;
             await this.regDAO.insertNewPerson(username, password, pnr, email, name, surname)
