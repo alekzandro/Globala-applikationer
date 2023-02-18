@@ -1,50 +1,46 @@
-const {Model ,DataTypes} = require('sequelize');
+const Sequelize = require("sequelize");
+const sequelize = require("../../src/util/database");
 
-class Person extends Model {
+const Person = sequelize.define("person", {
+        person_id: {
+            type: Sequelize.INTEGER,
     
-    static get MODEL_NAME(){
-        return 'persons';
-    }
+            primaryKey: true,
+           
+        },
+        name: {
+            type: Sequelize.STRING,
+          
+            
+        },
+        surname: {
+            type: Sequelize.STRING,
+           
+           
+        },
+        pnr: {
+            type: Sequelize.STRING,
+           
+           
+        },
+        email: {
+            type: Sequelize.STRING,
+           
+           
+        },
+        password: {
+            type: Sequelize.STRING,
+            
+            
+        },
+        role_id: {
+            type: Sequelize.INTEGER,
+            
+            
+        },
+        username: {
+            type: Sequelize.STRING,
+        }
+});
 
-    static get ATTRIBUTES(){
-        return ['person_id','name','surname','pnr','email','password','role_id','username'];
-    }
-    
-    static createModel (sequelize){
-        Person.init(
-            {
-                person_id: {
-                    type: DataTypes.INTEGER,
-                    primaryKey: true,
-                    autoIncrement: true
-                },
-                name: {
-                    type: DataTypes.STRING
-                },
-                surname: {
-                    type: DataTypes.STRING
-                },
-                pnr: {
-                    type: DataTypes.STRING
-                },
-                email: {
-                    type: DataTypes.STRING
-                },
-                password: {
-                    type: DataTypes.STRING
-                },
-                role_id: {
-                    type: DataTypes.INTEGER,
-                    defaultValue: null
-                },
-                username: {
-                    type: DataTypes.STRING
-                }
-            },
-            {sequelize, modelName: Person.MODEL_NAME, paranoid: false }
-        );
-        return Person;
-    }
-}
-
-module.exports = Person;
+module.exports = Person
