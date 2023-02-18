@@ -1,11 +1,10 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
-
 module.exports = new Sequelize(process.env.DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: 'localhost',
+    host: process.env.DB_HOST||'localhost',
     dialect: 'postgres',
-    port: 5433,
+    port: process.env.DB_PORT||5433,
     operatorAliases: false,
     define: {
         timestamps: false
