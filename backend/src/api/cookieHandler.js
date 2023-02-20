@@ -7,8 +7,9 @@ const jwt = require('jsonwebtoken')
  * @param {*} user the user that logged in
  * @param {*} res the response object 
  */
-const sendAuthCookie = (user, res) => {
-    const token = jwt.sign({id: user.id,username: user.username},
+const sendAuthCookie = async (user, res) => {
+    console.log(user)
+    const token = jwt.sign({person_id: user.person_id},
          process.env.JWT_SECRET, 
          {expiresIn: '30 minutes'});
     
@@ -25,15 +26,16 @@ const sendAuthCookie = (user, res) => {
  * @param {*} res response object
  * @returns 
  */
-const checkAuth = (contr, req, res) => {
+const checkAuth = async (contr, req, res) => {
     const cookie = req.cookies.auth;
     if (!cookie){
         return null;
     }
     try {
         const jwtUserPayload = jwt.verify(cookie, process.env.JWT_SECRET);
+        console.log(jwtUserPayload);
         //Implement function which calls controller for a database check for user if user is logged
-        const userLoggedIn = null; // until above is implemented we assume user not logged in 
+        const userLoggedIn = await contr.getUserById(jwtUserPayload.person_id); // until above is implemented we assume user not logged in 
         if (!userLoggedIn){
             res.clearCookie('auth');
             return null;

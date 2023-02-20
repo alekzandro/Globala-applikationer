@@ -15,6 +15,16 @@ class RegDAO {
         }
     }
 
+    async findPersonById (person_id) {
+        try {
+            const foundPerson = await Person.findByPk(person_id);
+            if (foundPerson.length === 0) return null;
+            return this.createPersonDTO(foundPerson);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async findPersonByIdentifiers (username=null, email=null, pnr=null) {
         try {
             const validIdentifiers = [{username: username},{email: email},{pnr: pnr}].filter(elem => elem[Object.keys(elem)[0]] !== null)

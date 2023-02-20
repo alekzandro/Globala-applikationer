@@ -3,13 +3,12 @@ const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
 const controller = require('../controller/Controller')
 
-router.route('/register_view').get((req, res, next) => {
+router.route('/register_view').get(async (req, res, next) => {
     if (req.auth){
         // User is already logged in ofcourse they should not be able to access register page
         res.render("homepage"); // render homepage
     }
     else {
-        // if user is logged out they can access registration page
         res.render("registration_page", {status: null, user: null});
     }
 })

@@ -18,6 +18,14 @@ class Controller {
         }
     }
 
+    async getUserById (person_id){
+        try {
+            return await this.regDAO.findPersonById(person_id);
+        } catch (error) {
+            throw error;
+        }
+    } 
+
     async testDatabaseConnection (){
         try {
             await this.regDAO.testConnection();
