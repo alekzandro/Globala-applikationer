@@ -8,7 +8,7 @@
     </div>
     <% if(status){ %>
         <div>
-            <p>registrering user <%= user %> was <%= status %> </p>
+            <p>registrering user <%= user %> <%= status %> </p>
         </div>
     <% }; %>
     <body>
@@ -16,6 +16,10 @@
             <form method="POST" action="/register/register_view">
                 <p> Username: </p> <input type="text" name="username"/>
                 <p> Password: </p> <input type="password" name="password"/>
+                <p> Email: </p> <input type="text" name="email"/>
+                <p> Person number: </p> <input type="text" name="pnr"/>
+                <p> Name: </p> <input type="text" name="name"/>
+                <p> Surname: </p> <input type="text" name="surname"/>
                 <p> <input type="submit" value="Submit"/> </p>
             </form>
         </div>

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
+const controller = require('../controller/Controller')
 
 router.route('/register_view').get((req, res, next) => {
     if (req.auth){
@@ -9,20 +10,27 @@ router.route('/register_view').get((req, res, next) => {
     }
     else {
         // if user is logged out they can access registration page
-        res.status(200);
         res.render("registration_page", {status: null, user: null});
     }
 })
 
 /**
- * When a client registers with a username and password
+ * When a client registers with a credentials
  * if register successfull view is rerendered with a success message else fail message
  */
-router.route('/register_view').post((req, res, next) => {
-    const body = req.body;
-    const username = body.username;
-    cookieHandler.sendAuthCookie(username, res); // testing cookies
-    res.render("registration_page", {status:'successfull', user:username}) // if registration is successfull 
+router.route('/register_view').post(async (req, res, next) => {
+    const getProps = (status, user) => {
+        return {status: status, user: user};
+    }
+
+    try{
+        const body = req.body;
+        const registerSuccess = await controller.registerUser(body.username, body.password, body.pnr, body.email, body.name, body.surname);
+        const props = registerSuccess?getProps('was successfull', body.username):getProps('failed', body.username);
+        res.render("registration_page", props);
+    } catch(err) {
+        throw err;
+    }
 })
 
 module.exports = router;

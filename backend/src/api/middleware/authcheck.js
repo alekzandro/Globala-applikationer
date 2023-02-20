@@ -17,9 +17,8 @@ const authCheck = async (req, res, next) => {
         }
     } catch (error) {
         next(error);
-    } finally {
-        next();
     }
+    next();
 }
 
 module.exports = authCheck;
