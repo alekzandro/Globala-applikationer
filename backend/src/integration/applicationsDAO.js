@@ -5,14 +5,8 @@ const Competence_profile = require('../model/Competence_profile');
 const Availability = require('../model/Availability');
 const ApplicationDTO = require('../model/ApplicationDTO');
 
-class ApplicationDAO {
-    constructor (db) {
-        Person.create(db);
-        //Competence.create(db);
-        //Competence_profile.create(db);
-       // Availability.create(db);
-        }
 
+class ApplicationDAO {
 
 
     async findApplications(nrOfApplications) {

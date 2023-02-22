@@ -3,9 +3,9 @@ const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
 
 class LoginDAO {
-    constructor (db) {
+   /* constructor (db) {
         Person.create(db);
-    }
+    }*/
 
 
 
