@@ -1,6 +1,6 @@
 
 class PersonDTO {
-    constructor (id, name, surname, pnr, email, password, roleID, username){
+    constructor (id, name, surname, pnr, email, password, role_id, username){
         this.person_id = id;
         this.name = name;
         this.surname = surname;
