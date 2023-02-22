@@ -4,7 +4,6 @@ const sequelize = require("../../src/util/database");
 const Availability = sequelize.define("availability", {
     availability_id: {
         type: Sequelize.INTEGER,
-           
             primaryKey: true,
     },
     person_id: {

@@ -12,7 +12,6 @@ const sendAuthCookie = async (user, res) => {
     const token = jwt.sign({person_id: user.person_id},
          process.env.JWT_SECRET, 
          {expiresIn: '30 minutes'});
-    
     res.cookie('auth', token, {
         httpOnly: true,
         expires: 0

@@ -13,7 +13,8 @@ const Competence_profile = sequelize.define("competence_profile", {
     },
     competence_id: {
         type: Sequelize.INTEGER,
-           
+        references: 'competences', 
+        referencesKey: 'competence_id' 
     },
    years_of_experience: {
         type: Sequelize.DOUBLE,

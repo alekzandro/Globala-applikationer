@@ -20,41 +20,13 @@
       <th>Application</th>
       <th>Date Submitted</th>
     </tr>
-    <tr>
-      <td>John Doe</td>
-      <td>Cover Letter</td>
-      <td>01/01/2023</td>
-    </tr>
-    <tr>
-      <td>John Doe</td>
-      <td>Resume</td>
-      <td>01/01/2023</td>
-    </tr>
-    <tr>
-      <td>Jane Smith</td>
-      <td>Cover Letter</td>
-      <td>01/02/2023</td>
-    </tr>
-    <tr>
-      <td>Jane Smith</td>
-      <td>Resume</td>
-      <td>01/02/2023</td>
-    </tr>
-    <tr>
-      <td>Jane Smith</td>
-      <td>Writing Sample</td>
-      <td>01/02/2023</td>
-    </tr>
-    <tr>
-      <td>Bob Johnson</td>
-      <td>Cover Letter</td>
-      <td>01/03/2023</td>
-    </tr>
-    <tr>
-      <td>Bob Johnson</td>
-      <td>Resume</td>
-      <td>01/03/2023</td>
-    </tr>
+    <%  for(var i=0; i < locals.applications.length; i++) { %>
+      <tr>
+        <td><%= locals.applications[i].name %></td>
+        <td>Cover Letter</td>
+        <td>01/01/2023</td>
+      </tr>
+    <% } %>
   </table>
 </body>
 </html>

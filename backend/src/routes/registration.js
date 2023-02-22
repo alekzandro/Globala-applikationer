@@ -3,7 +3,7 @@ const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
 const controller = require('../controller/Controller')
 
-router.route('/register_view').get(async (req, res, next) => {
+router.route('/').get(async (req, res, next) => {
     if (req.auth){
         // User is already logged in ofcourse they should not be able to access register page
         res.render("homepage"); // render homepage
@@ -17,7 +17,7 @@ router.route('/register_view').get(async (req, res, next) => {
  * When a client registers with a credentials
  * if register successfull view is rerendered with a success message else fail message
  */
-router.route('/register_view').post(async (req, res, next) => {
+router.route('/').post(async (req, res, next) => {
     const getProps = (status, user) => {
         return {status: status, user: user};
     }

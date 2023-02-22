@@ -1,10 +1,10 @@
-const {Sequelize, Op} = require('sequelize');
+
 const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
 
 class LoginDAO {
     constructor (db) {
-        Person.createModel(db);
+        Person.create(db);
     }
 
 
@@ -12,7 +12,15 @@ class LoginDAO {
     async checkPassword(username, password) {
         try {
             const foundPerson = await Person.findAll({where : {username: username}})
-           return foundPerson[0].username == username && foundPerson[0].password == password;           
+            if(!foundPerson[0]){
+                foundPerson = await Person.findAll({where : {pnr: username}})
+            }
+            if(foundPerson[0].password == password) {
+                return foundPerson[0]
+            } else {
+                return null
+            }
+                     
         } catch (error){
             throw error;
         }

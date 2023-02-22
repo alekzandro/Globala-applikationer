@@ -16,6 +16,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+const loginRouter = require("./routes/login")
 const homepageRouter = require("./routes/homepage")
 const applicantsRouter = require("./routes/applicants")
 
@@ -23,12 +24,15 @@ app.set('views',__dirname + '/views')
 app.set("view engine", "ejs")
 
 const registrationRouter = require('./routes/registration')
+const applicationsRouter = require('./routes/applications')
 
 app.use(authCheck); // important this comes before any routers!
 
 app.use("/", homepageRouter)
 app.use("/applicant", applicantsRouter)
+app.use("/applications", applicationsRouter)
 app.use('/register',registrationRouter);
+app.use('/login',loginRouter);
 
 app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 
@@ -41,6 +45,8 @@ app.get('/', (req, res, next) => {
 app.get('*', (req, res, next) => {
     next(new Error('page_not_found'));
 });
+const db = require("./util/database")
+db.authenticate().then(() => console.log('Database connected!')).catch(err => console.log(err))
 
 app.use(Logerror);
 
