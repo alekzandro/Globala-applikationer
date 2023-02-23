@@ -16,19 +16,10 @@ router.post("/", (req, res) => {
     const password = req.body.password
 
     const login = new loginDAO(db);
-
-  
-
-   
    login.checkPassword(username, password).then(user => {
-        console.log("User: " + user.username)
         cookieHandler.sendAuthCookie(user, res)
-   
         res.render("user_start_page", {user: user})
     })
-    
-   
-    
 })
 
 

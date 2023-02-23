@@ -8,7 +8,7 @@ const ApplicationDTO = require('../model/ApplicationDTO');
 class ApplicationDAO {
     constructor (db) {
         Person.create(db);
-        //Competence.create(db);
+        Competence.create(db);
         //Competence_profile.create(db);
        // Availability.create(db);
         }

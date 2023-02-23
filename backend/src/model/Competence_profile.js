@@ -5,7 +5,8 @@ const Competence_profile = sequelize.define("competence_profile", {
     competence_profile_id: {
         type: Sequelize.INTEGER,
            
-            primaryKey: true,
+        primaryKey: true,
+        autoIncrement: true,
     },
     person_id: {
         type: Sequelize.INTEGER,
