@@ -47,5 +47,17 @@ const checkAuth = async (contr, req, res) => {
     }
 }
 
-module.exports = {sendAuthCookie, checkAuth}
+const clearAuth = async (req, res) => {
+    try {
+        if (req.cookies.auth){
+            res.clearCookie('auth');
+            return true;
+        }
+        return false;
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = {sendAuthCookie, checkAuth, clearAuth}
 

@@ -6,10 +6,12 @@ const controller = require('../controller/Controller')
 router.route('/').get(async (req, res, next) => {
     if (req.auth){
         // User is already logged in ofcourse they should not be able to access register page
-        res.render("homepage"); // render homepage
+        navdata = {loginstatus:true, username: req.auth.username}
+        res.render("homepage", navdata); // render homepage
     }
     else {
-        res.render("registration_page", {status: null, user: null});
+        navbardata = {loginstatus:false, username:null}
+        res.render("registration_page", {status: null, user: null, navbardata:navbardata});
     }
 })
 

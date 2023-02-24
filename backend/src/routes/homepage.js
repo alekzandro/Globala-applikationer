@@ -1,9 +1,11 @@
 const express = require('express')
+const gen_navdata = require('../util/helpers')
 const router = express.Router()
 
 router.get("/", (req, res) => {
     
-    res.render("homepage")
+    navdata = gen_navdata(req)
+    res.render("homepage", navdata)
     
 })
 
