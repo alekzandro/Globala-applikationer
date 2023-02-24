@@ -11,7 +11,7 @@ router.route('/').get(async (req, res, next) => {
     }
     else {
         navbardata = {loginstatus:false, username:null}
-        res.render("registration_page", {status: null, user: null, navbardata:navbardata});
+        res.render("registration_page", {status: null, user: null, navbardata:navbardata, causes:null});
     }
 })
 
@@ -26,8 +26,13 @@ router.route('/').post(async (req, res, next) => {
 
     try{
         const body = req.body;
-        const registerSuccess = await controller.registerUser(body.username, body.password, body.pnr, body.email, body.name, body.surname);
-        const props = registerSuccess?getProps('was successfull', body.username):getProps('failed', body.username);
+        const validitystatus = await controller.registerUser(body.username, body.password, body.pnr, body.email, body.name, body.surname);
+        if (validitystatus){
+            props={status: 'failed', user:body.username, causes: validitystatus}
+        } else {
+            props={status: 'was successfull', user:body.username, causes: null}
+        }
+
         res.render("registration_page", props);
     } catch(err) {
         throw err;
