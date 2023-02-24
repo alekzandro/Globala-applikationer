@@ -12,7 +12,7 @@ class Controller {
             if (validitystatus.length > 0) return validitystatus.map(obj => obj.msg); 
             const res = await this.regDAO.findPersonByIdentifiers(username, email, pnr);
             if (res !== null) return false;
-            await this.regDAO.insertNewPerson(username, password, pnr, email, name, surname)
+            await this.regDAO.insertNewPerson(username, email, pnr, password, name, surname)
             return null;
         } catch (error) {
             throw error;
