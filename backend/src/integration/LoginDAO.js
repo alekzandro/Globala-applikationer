@@ -3,11 +3,7 @@ const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
 
 class LoginDAO {
-    constructor (db) {
-        Person.create(db);
-    }
-
-
+  
 
     async checkPassword(username, password) {
         try {
