@@ -3,12 +3,17 @@ const router = express.Router()
 const loginDAO = require('../integration/LoginDAO')
 const db = require('../util/database')
 const cookieHandler = require('../api/cookieHandler')
+const gen_navdata = require('../util/helpers')
 
 
 router.get("/", (req, res) => {
-    
-    res.render("login.ejs")
-    
+    navdata = gen_navdata(req)
+    if (req.auth){
+        res.render("homepage.ejs", navdata) // redirect to homepage if already logged in
+    }
+    else {
+    res.render("login.ejs", navdata)
+    }
 })
 
 router.post("/", (req, res) => {
