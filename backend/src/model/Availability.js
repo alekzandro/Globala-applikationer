@@ -9,6 +9,10 @@ const Availability = sequelize.define("availability", {
     },
     person_id: {
         type: Sequelize.INTEGER,
+        references: {
+            model: 'Person',
+            key: 'person_id'
+        }
            
     },
     from_date: {

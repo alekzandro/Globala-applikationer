@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../../src/util/database");
+const Person = require("./Person")
+const Competence = require("./Competence")
 
 const Competence_profile = sequelize.define("competence_profile", {
     competence_profile_id: {
@@ -10,14 +12,14 @@ const Competence_profile = sequelize.define("competence_profile", {
     person_id: {
         type: Sequelize.INTEGER,
         references: {
-            model: 'Person', 
+            model: Person, 
             key: 'person_id',
           }           
     },
     competence_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Competence', 
+          model: Competence, 
           key: 'competence_id',
         }
     },

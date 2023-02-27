@@ -5,21 +5,41 @@ const PersonDTO = require('../model/PersonDTO');
 class LoginDAO {
   
 
-    async checkPassword(username, password) {
+    async findUser(id) {
         try {
-            const foundPerson = await Person.findAll({where : {username: username}})
-            if(!foundPerson[0]){
-                foundPerson = await Person.findAll({where : {pnr: username}})
+            let foundUser = await Person.findAll({where : {username: id}})
+            if(foundUser[0]){
+                return this.createPersonDTO(foundUser[0]);
             }
-            if(foundPerson[0].password == password) {
-                return foundPerson[0]
-            } else {
-                return null
+            foundUser = await Person.findAll({where : {pnr: id}})
+            if(foundUser[0]) {
+                return this.createPersonDTO(foundUser[0])
             }
-                     
+            return null;                     
         } catch (error){
             throw error;
         }
+    }
+
+    async hasPassword(user){
+        if(user && user.password){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    async checkPassword(user, password){
+        if(user && user.password == password){
+            return user;          
+         } else {
+            return null;
+         }
+    }
+
+    async setPassword(pnr, password){
+        return await Person.update({password: password}, {where: {pnr: pnr}})
+       
     }
 
     createPersonDTO(personModel) {

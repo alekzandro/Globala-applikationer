@@ -1,19 +1,26 @@
 <%
-    gen_buttons = function (loginstatus){
+    gen_buttons = function (loginstatus, recruiter){
         buttons = {}
         buttons['home'] = '/'
         buttons['login'] = '/login'
         buttons['register'] = '/register'
-        buttons['applications'] = '/applications'
+        buttons['viewApplications'] = '/viewApplications'
+        buttons['createApplication'] = '/createApplication'
         buttons['logout'] = '/logout'
         if (loginstatus){
+            if(recruiter){
+                delete buttons.createApplication
+            } else {
+                delete buttons.viewApplications
+            }
             delete buttons.register
             delete buttons.login
             return buttons
         }
         else {
             delete buttons.logout
-            delete buttons.applications
+            delete buttons.createApplication
+            delete buttons.viewApplications
             return buttons
         }
     }
@@ -23,7 +30,7 @@
     <%if(username){%>
         <span style="display: inline-block;"><h5> User: <%= username %></h5></span>
         <% } %>
-    <% const obj = gen_buttons(loginstatus) %>
+    <% const obj = gen_buttons(loginstatus, recruiter) %>
     <% Object.keys(obj).forEach(key => { %>
         <form action="<%= obj[key]%>" style="display: inline-block;">
             <input type="submit" value="<%= key %>"/>

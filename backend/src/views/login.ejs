@@ -9,6 +9,10 @@
     </div>
     <body>
         <div>
+            <% if(incorrect){%>
+                <p style="color: red;"> Incorrect username or password </p>
+
+           <% }%>
             <form method="POST" action="/login">
                 <p> Username or person number: </p> <input type="text" name="username"/>
                 <p> Password: </p> <input type="password" name="password"/>

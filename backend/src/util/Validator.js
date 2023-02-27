@@ -45,4 +45,4 @@ function validateRegisterForm (username, password, pnr, email, name, surname) {
     return filtered;
 }
 
-module.exports = {validateRegisterForm}
+module.exports = {validateRegisterForm, isAlphaNumericSlash}

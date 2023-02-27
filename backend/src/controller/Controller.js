@@ -1,9 +1,26 @@
 const {RegDAO} = require('../integration/RegDAO')
+const LoginDAO = require('../integration/LoginDAO')
 const validator = require('../util/Validator')
 
 class Controller {
     constructor () {
         this.regDAO = new RegDAO();
+        this.loginDAO = new LoginDAO();
+    }
+
+    async loginUser(username, password){
+       const user = await this.loginDAO.findUser(username)
+       console.log(user)
+       if(await this.loginDAO.hasPassword(user)){
+        console.log("In here!")
+        return await this.loginDAO.checkPassword(user, password)
+       } else {
+        return user;
+       }
+    }
+
+    async setPassword(personnumber, password) {
+        this.loginDAO.setPassword(personnumber, password)
     }
 
     async registerUser (username, password, pnr, email, name, surname){

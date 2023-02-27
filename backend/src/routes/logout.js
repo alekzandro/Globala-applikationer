@@ -3,8 +3,9 @@ const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
 
 
+
 router.route('/').get(async (req, res) => {
-    navdata = {loginstatus:false, username: null}
+   navdata = {loginstatus:false, username: null, recruiter: null}
     if (req.auth){
         try {
             await cookieHandler.clearAuth(req, res);
@@ -12,6 +13,7 @@ router.route('/').get(async (req, res) => {
             throw error;
         }
     } 
+
     res.render('homepage', navdata);
 })
 

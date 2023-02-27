@@ -2,6 +2,7 @@
 const Person = require('../model/Person');
 const Competence = require('../model/Competence');
 const Competence_profile = require('../model/Competence_profile');
+
 const Availability = require('../model/Availability');
 const ApplicationDTO = require('../model/ApplicationDTO');
 
@@ -12,7 +13,10 @@ class ApplicationDAO {
     async findApplications(nrOfApplications) {
         try {
 
+        
+           
             const result = await Person.findAll();
+            console.log(result[0])
             const applications = []
             for(let i =0; i < nrOfApplications; i++){
                 applications[i] = this.createApplicationDTO(result[i], "test", "test")

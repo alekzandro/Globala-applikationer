@@ -11,22 +11,30 @@
       padding: 5px;
     }
   </style>
-  <title>List of Applications</title>
+  <title>Applications</title>
 </head>
+<div><%- include('partials/navbar', navdata) %> </div>
 <body>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Application</th>
-      <th>Date Submitted</th>
-    </tr>
-    <%  for(var i=0; i < locals.applications.length; i++) { %>
-      <tr>
-        <td><%= locals.applications[i].name %></td>
-        <td>Cover Letter</td>
-        <td>01/01/2023</td>
-      </tr>
-    <% } %>
-  </table>
+  <form action="/applications" method="GET">
+    <p>Number of applications to be viewed</p> <input type="text" name="nrOfApplications"/>
+    <button type="submit">View applications</button>
+    <%if(applications[0]){%>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Application</th>
+          <th>Date Submitted</th>
+        </tr>
+        <%  for(var i=0; i < applications.length; i++) { %>
+          <tr>
+            <td><%= applications[i].name %></td>
+            <td>Cover Letter</td>
+            <td>01/01/2023</td>
+          </tr>
+        <% } %>
+      </table>
+
+      <%}%>
+  
 </body>
 </html>

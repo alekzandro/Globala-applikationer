@@ -1,10 +1,14 @@
 
 function gen_navdata (req){
     if (req.auth){
-        return {loginstatus:true, username: req.auth.username}
+        if(req.auth.role_id == 1){
+            return {loginstatus:true, username: req.auth.name, recruiter: true}
+        } else {
+            return {loginstatus:true, username: req.auth.name, recruiter: false}
+        }    
     }
     else {
-        return {loginstatus:false, username: null}
+        return {loginstatus:false, username: null, recruiter: null}
     }
 }
 
