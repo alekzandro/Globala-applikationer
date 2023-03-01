@@ -1,6 +1,6 @@
 # Globala Applikationer
 * Backend folder: express application.
-* Database folder: database related files
+* Database folder: database related files.
 
 # Getting Started with Create React App
 
