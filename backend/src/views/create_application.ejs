@@ -31,7 +31,7 @@
         </div>
         <div id="review-box">
             <div id="review" style="border: 1px solid" hidden></div>
-            <p><button>Send application</button></p>
+            <p><button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button></p>
         </div>
     </body>
     <script>
@@ -151,6 +151,28 @@
                 };
             })
             return alreadyexists;
+        }
+
+        async function post_application (event){
+            event.preventDefault();
+            if (competencies.length === 0 || availabilities.length === 0) {
+                alert ("Please enter availibilities and competencies!")
+                return;
+            }
+            const btn = document.getElementById('send-btn')
+            const URL = window.location.protocol + '//' + window.location.host + btn.value;
+            const payload = {availabilities: availabilities, competencies: competencies}
+            const options = {
+                method: 'POST',
+                headers:{'Content-Type': 'application/json'},
+                credentials: 'include',
+                body: JSON.stringify(payload)
+            }
+            try {
+                const resp = await fetch(URL, options)
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         avail_listener();
