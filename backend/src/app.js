@@ -26,6 +26,7 @@ app.set("view engine", "ejs")
 const registrationRouter = require('./routes/registration')
 const applicationsRouter = require('./routes/applications')
 const logoutRouter = require('./routes/logout')
+const createApplicationRouter = require('./routes/createapplication')
 
 app.use(authCheck); // important this comes before any routers!
 
@@ -35,6 +36,7 @@ app.use("/applications", applicationsRouter)
 app.use('/register',registrationRouter);
 app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
+app.use('/createApplication', createApplicationRouter)
 
 app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 

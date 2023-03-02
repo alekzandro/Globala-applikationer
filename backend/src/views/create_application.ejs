@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> create application </title>
+    </head>
+    <body>
+        <%- include('partials/navbar', navbardata )%>
+        <div id="av-form">
+            <label for="availability">Add Availability</label>
+            <p>
+                From: <input type="date" class="avail" id="availability" name="from"
+                min="<%= start_date%>" value="<%= start_date%>"/>
+            </p>
+            <p>
+                To: <input type="date" class="avail" id="availability" name="to"
+                min="<%= start_date%>" value="<%= start_date%>"/>
+            </p>
+            <button onclick="add_avail()">Add availability</button>
+        </div>
+        <div id="comp-form">
+            <label for="competence"> Add Competence </label>
+            <p>
+                Competency: <select id="competence" class="competence" name="competences">
+                    <% comps.map(c => { %>
+                        <option value="<%= c.id %>"><%= c.name %></option>
+                    <%}) %>
+                </select>
+            </p>
+            <p>Years of experience: <input type="number" id="exp"/></p>
+            <button>Add competency</button>
+
+            <p><button>Send application</button></p>
+        </div>
+    </body>
+    <script>
+        const state = {};
+        let availabilities = [];
+
+        function avail_listener() {
+            const elem = document.getElementById("av-form");
+            elem.addEventListener('change', e => {
+                let elems = document.getElementsByClassName('avail')
+                state[e.target.name] = e.target.value
+            })
+        }
+
+        function add_avail() {
+            if (state.from && state.to){
+                availabilities = availabilities.concat({from: state.from, to: state.to})
+            }
+        }
+
+        avail_listener();
+    </script>
+</html>
