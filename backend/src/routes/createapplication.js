@@ -9,7 +9,7 @@ router.route('/').get(async (req, res, next) => {
     if(req.auth && req.auth.role_id === 2){
         res.render('create_application', {navbardata:gen_navdata(req), start_date: dateformat(), comps: hardcoded_comps})
     } else {
-        res.render('homepage', {navbardata:gen_navdata(req)})
+        res.render('homepage', {navdata:gen_navdata(req)})
     }
 })
 
