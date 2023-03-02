@@ -1,16 +1,21 @@
 const express = require('express');
+const controller = require('../controller/Controller');
 const router = express.Router();
 const {gen_navdata, dateformat} = require('../util/helpers')
 
-const hardcoded_comps = [{id:1, name:"ticket sales"},
-{id: 2, name:"lotteries"}, {id: 3, name:"rollercoaster operation"}];
-
 router.route('/').get(async (req, res, next) => {
-    if(req.auth && req.auth.role_id === 2){
-        res.header('Access-Control-Allow-Origin', '*')
-        res.render('create_application', {navbardata:gen_navdata(req), start_date: dateformat(), path:"/createApplication", comps: hardcoded_comps})
-    } else {
-        res.render('homepage', {navdata:gen_navdata(req)})
+    try{
+        if(req.auth && req.auth.role_id === 2){
+            const comps =  await controller.get_competencies();
+            console.log(comps);
+            res.header('Access-Control-Allow-Origin', '*')
+            res.render('create_application', {navbardata:gen_navdata(req), start_date: dateformat(), path:"/createApplication", comps: comps})
+        } else {
+            res.render('homepage', {navdata:gen_navdata(req)})
+        }
+    }
+    catch (error) {
+        next(error);
     }
 })
 
