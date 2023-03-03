@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
         res.render("homepage.ejs", {navdata: navdata, incorrect: true})
     } else if (user){
         navdata = gen_navdata(req)
-        res.render("setpassword", {user_pnr: user.pnr, incorrectPassword: false, navdata: navdata})
+        res.render("getpassword", {user_pnr: user.pnr, incorrectEmail: false, navdata: navdata})
     } else {
         navdata = gen_navdata(req)
         res.render("login.ejs", {navdata: navdata, incorrect: true})
@@ -38,18 +38,20 @@ router.post("/", async (req, res) => {
 })
 
 
-router.post('/setpassword', (req, res) => {
+router.post('/getpassword',async (req, res) => {
     navdata = gen_navdata(req)
-    const validPassword = validator.isAlphaNumericSlash(req.body.password);
-    if(validPassword){
-        controller.setPassword(req.body.pnr, req.body.password)
+    const email = req.body.email
+    var user = await controller.findUserByEmail(email)
+
+    if(user){
+       var password = await controller.generatePassword();
+       //controller.sendPasswordEmail(user.email, password)
+       console.log("Sending email with password")
+        controller.setPassword(user.pnr, password)
         res.redirect('/login')
     } else {
-        res.render("setpassword", {user_pnr: req.body.pnr, incorrectPassword: true, navdata: navdata})
+        res.render("getpassword", {user_pnr: req.body.pnr, incorrectEmail: true, navdata: navdata})
     }
-
-    
-   
 });
 
 
