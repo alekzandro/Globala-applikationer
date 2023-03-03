@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
-const controller = require('../controller/Controller')
+const controller = require('../controller/Controller');
+const gen_navdata = require('../util/helpers');
 
 router.route('/').get(async (req, res, next) => {
     if (req.auth){
         // User is already logged in ofcourse they should not be able to access register page
-        navdata = {loginstatus:true, username: req.auth.username}
+        navdata = gen_navdata(req)
         res.render("homepage", navdata); // render homepage
     }
     else {
-        navbardata = {loginstatus:false, username:null}
+        navbardata = gen_navdata(req)
         res.render("registration_page", {status: null, user: null, navbardata:navbardata, causes:null});
     }
 })
