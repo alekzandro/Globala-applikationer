@@ -1,10 +1,9 @@
 const {Sequelize, Op} = require('sequelize');
 const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
-const sequalize_instance = require('../util/database')
+const sequelize = require('../util/database')
 
 class RegDAO {
-
 
     async testConnection (){
         try {
@@ -16,16 +15,20 @@ class RegDAO {
     }
 
     async findPersonById (person_id) {
+        const transaction = sequelize.transaction();
         try {
             const foundPerson = await Person.findByPk(person_id);
+            transaction.commit()
             if (foundPerson.length === 0) return null;
             return this.createPersonDTO(foundPerson);
         } catch (error) {
+            transaction.rollback();
             throw error;
         }
     }
 
     async findPersonByIdentifiers (username=null, email=null, pnr=null) {
+        const transaction = sequelize.transaction();
         try {
             const validIdentifiers = [{username: username},{email: email},{pnr: pnr}].filter(elem => elem[Object.keys(elem)[0]] !== null)
             if (validIdentifiers.length === 0) return null;
@@ -34,14 +37,17 @@ class RegDAO {
                     [Op.or]: validIdentifiers
                 }
             });
+            transaction.commit()
             if (foundPerson.length === 0) return null;
             return this.createPersonDTO(foundPerson[0]);
         } catch (error){
+            transaction.rollback();
             throw error;
         }
     }
 
     async insertNewPerson(username, email, pnr, password, name, surname){
+        const transaction = sequelize.transaction();
         try {
             const newPerson = await Person.create({
                 name: name,
@@ -51,7 +57,9 @@ class RegDAO {
                 password: password,
                 username: username,
             });
+            transaction.commit()
         } catch (error) {
+            transaction.rollback();
             throw error;
         }
     }

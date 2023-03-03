@@ -11,23 +11,17 @@ class ApplicationDAO {
 
 
     async findApplications(nrOfApplications) {
-        try {
-
-        
-           
+        const transaction = sequelize.transaction();
+        try {       
             const result = await Person.findAll();
-            console.log(result[0])
             const applications = []
             for(let i =0; i < nrOfApplications; i++){
                 applications[i] = this.createApplicationDTO(result[i], "test", "test")
-               
             }
-            
-            return applications
-
-
-           
+            transaction.commit();            
+            return applications           
         } catch (error){
+            transaction.rollback();
             throw error;
         }
     }

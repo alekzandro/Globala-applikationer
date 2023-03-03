@@ -4,7 +4,7 @@ const db = require('../util/database')
 const ApplicationDAO = require('../integration/applicationsDAO');
 const gen_navdata = require('../util/helpers')
 
-router.get('/', (req, res) => {
+router.get('/view', (req, res) => {
   const nrOfApplications = req.query.nrOfApplications;
   navdata = gen_navdata(req)
   if(req.auth){
@@ -17,6 +17,13 @@ router.get('/', (req, res) => {
     res.render('homepage.ejs', navdata)
   }
 });
+
+router.get('/create', (req, res) => {
+  navdata = gen_navdata(req)
+  if(req.auth){
+    res.send("Create application")
+  }
+})
 
 
 module.exports = router;
