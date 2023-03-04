@@ -1,4 +1,7 @@
-
+/*
+We have error handling blocks with console.error statements to log the error details in case any errors occur during database operations. 
+We have also await before the transaction.rollback() function calls to ensure that the rollback operation is completed before throwing the error.
+*/ 
 const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
 const sequelize = require("../util/database");
@@ -25,6 +28,7 @@ class LoginDAO {
             return null;                     
         } catch (error){
             await transaction.rollback();
+            console.error('Error occurred while finding user: ', error);
             throw error;
         }
     }
@@ -50,6 +54,7 @@ class LoginDAO {
             }
         } catch(error){
             await transaction.rollback();
+            console.error('Error occurred while finding user by email: ', error);
             throw error;
 
         }
@@ -73,6 +78,7 @@ class LoginDAO {
 
         } catch(error){
             await transaction.rollback();
+            console.error('Error occurred while setting password: ', error);
             throw error;
         }       
     }
