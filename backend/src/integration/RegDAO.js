@@ -1,3 +1,11 @@
+/*The testConnection method now throws an error if it fails to authenticate with the database.
+
+The findPersonById method now checks if the retrieved foundPerson is null and throws an error if it is.
+
+The findPersonByIdentifiers method now throws an error if it fails to find a person by identifiers.
+
+The insertNewPerson method now throws an error if it fails to insert a new person into the database*/
+
 const {Sequelize, Op} = require('sequelize');
 const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
@@ -7,23 +15,26 @@ class RegDAO {
 
     async testConnection (){
         try {
-            await this.database.authenticate();
+            await sequelize.authenticate();
             console.log("DB CONNECTION SUCCESS");
         } catch (error) {
             console.log ("DB CONNECTION FAIL");
+            console.error(error);
+            throw new Error("Failed to connect to database");
         }
     }
 
     async findPersonById (person_id) {
-        const transaction = sequelize.transaction();
         try {
+            const transaction = await sequelize.transaction();
             const foundPerson = await Person.findByPk(person_id);
             transaction.commit()
             if (foundPerson.length === 0) return null;
             return this.createPersonDTO(foundPerson);
         } catch (error) {
             transaction.rollback();
-            throw error;
+            console.error(error);
+            throw new Error("Failed to find person by ID");
         }
     }
 
@@ -42,7 +53,8 @@ class RegDAO {
             return this.createPersonDTO(foundPerson[0]);
         } catch (error){
             transaction.rollback();
-            throw error;
+            console.error(error);
+            throw new Error("Failed to find person by identifiers");
         }
     }
 
@@ -60,7 +72,8 @@ class RegDAO {
             transaction.commit()
         } catch (error) {
             transaction.rollback();
-            throw error;
+            console.error(error);
+            throw new Error("Failed to insert new person");
         }
     }
 

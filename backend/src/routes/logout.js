@@ -5,16 +5,21 @@ const cookieHandler = require('../api/cookieHandler')
 
 
 router.route('/').get(async (req, res) => {
-   navdata = {loginstatus:false, username: null, recruiter: null}
-    if (req.auth){
-        try {
+    try {
+        let navdata = {loginstatus:false, username: null, recruiter: null}
+        if (req.auth){
             await cookieHandler.clearAuth(req, res);
-        } catch (error) {
-            throw error;
-        }
-    } 
-
-    res.render('homepage', navdata);
-})
+        } 
+        res.render('homepage', navdata);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal server error');
+    }
+});
 
 module.exports = router;
+
+/*
+We have a try-catch block to handle any errors that might occur during the execution of the code. 
+If an error occurs, it will be logged to the console and a 500 Internal Server Error response will be sent back to the client.
+*/ 
