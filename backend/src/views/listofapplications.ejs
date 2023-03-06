@@ -15,9 +15,10 @@
 </head>
 <div><%- include('partials/navbar', navdata) %> </div>
 <body>
-  <form action="/applications" method="GET">
+  <form action="view" method="GET">
     <p>Number of applications to be viewed</p> <input type="text" name="nrOfApplications"/>
     <button type="submit">View applications</button>
+  </form>
     <%if(applications[0]){%>
       <table>
         <tr>
