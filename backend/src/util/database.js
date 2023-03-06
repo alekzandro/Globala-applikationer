@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // Generated sequalize instance depends on if we are on production
 // or a dev runtime.
-module.exports = DATABASE_URL? 
+module.exports = process.env.DATABASE_URL? 
 new Sequelize(process.env.DATABASE_URL, {
     dialect: "postgres",
     dialectOptions: {
