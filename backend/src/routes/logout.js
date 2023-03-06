@@ -6,11 +6,10 @@ const cookieHandler = require('../api/cookieHandler')
 
 router.route('/').get(async (req, res) => {
     try {
-        let navdata = {loginstatus:false, username: null, recruiter: null}
         if (req.auth){
             await cookieHandler.clearAuth(req, res);
         } 
-        res.render('homepage', navdata);
+        res.render('homepage', {navdata:{loginstatus:false, username: null, recruiter: null}});
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal server error');
