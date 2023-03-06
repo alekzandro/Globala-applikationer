@@ -15,6 +15,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
+app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 
 const loginRouter = require("./routes/login")
 const homepageRouter = require("./routes/homepage")
@@ -37,8 +38,6 @@ app.use('/register',registrationRouter);
 app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/createApplication', createApplicationRouter)
-
-app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 
 app.get('/', (req, res, next) => {
     jsonResponse = {'success':{'msg': 'api call success!'}}

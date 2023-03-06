@@ -10,13 +10,14 @@ const Competence_profile = require('../model/Competence_profile');
 const Availability = require('../model/Availability');
 const ApplicationDTO = require('../model/ApplicationDTO');
 const competenceDTO = require('../model/competenceDTO');
+const sequelize = require('../util/database')
 
 
 class ApplicationDAO {
 
 
     async findApplications(nrOfApplications) {
-        const transaction = sequelize.transaction();
+        const transaction = await sequelize.transaction();
         try {       
             const result = await Person.findAll();
             if (result.length === 0) {
