@@ -27,7 +27,6 @@ class RegDAO {
     async findPersonById (person_id) {
         try {
             const foundPerson = await Person.findByPk(person_id);
-            transaction.commit()
             if (foundPerson.length === 0) return null;
             return this.createPersonDTO(foundPerson);
         } catch (error) {
