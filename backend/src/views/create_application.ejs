@@ -30,7 +30,10 @@
             </div>
             <div id="review-box">
                 <div id="review" style="border: 1px solid; margin: 5px;" hidden></div>
-                <p><button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button></p>
+                <p>
+                    <button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button>
+                    <button id="clear-btn" onclick="clear_application()">Clear Application</button>
+                </p>
             </div>
         </div>
     </body>
@@ -75,6 +78,12 @@
                 if (already_exists(competencies, obj)) return;
                 competencies = [...competencies, {competency: state.competence, experience: state.exp}]
             }
+            upd_review_box();
+        }
+
+        function clear_application() {
+            availabilities = [];
+            competencies = [];
             upd_review_box();
         }
 

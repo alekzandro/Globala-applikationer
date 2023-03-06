@@ -22,6 +22,7 @@ router.route('/').get(async (req, res, next) => {
 router.route('/').post(async (req, res, next) => {
     console.log("post createapp call")
     console.log(req.body);
+    console.log(req.body.competencies)
     res.send({msg: "received"})
 })
 
