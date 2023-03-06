@@ -4,7 +4,8 @@ const LoginDAO = require('../integration/LoginDAO')
 const ApplicationDAO = require('../integration/applicationsDAO');
 const validator = require('../util/Validator')
 const passwordGenerator = require('../util/PasswordGenerator')
-const emailSender = require('../util/EmailSender')
+const emailSender = require('../util/EmailSender');
+const Transactor = require('../integration/Transactor');
 
 class Controller {
     constructor () {
@@ -38,17 +39,28 @@ class Controller {
 
 
     async registerUser (username, password, pnr, email, name, surname){
-        try {
-            const validitystatus = validator.validateRegisterForm(username, password, pnr, email, name, surname);
-            if (validitystatus.length > 0) return validitystatus.map(obj => obj.msg); 
-            const res = await this.regDAO.findPersonByIdentifiers(username, email, pnr);
-            if (res !== null) return false;
-            await this.regDAO.insertNewPerson(username, email, pnr, password, name, surname)
+        const transactor = new Transactor(); // creating transactor interface
+        
+        try {   
+            await transactor.startTransaction();  // start transaction
+            try {
+                const res = await this.regDAO.findPersonByIdentifiers(username, email, pnr);
+                if (res !== null) {
+                    await transactor.commit(); // commit if user already exists and return
+                    return false;
+                }
+                await this.regDAO.insertNewPerson(username, email, pnr, password, name, surname)  
+                transactor.commit(); // commit inserted user
+            } catch (error) {
+                transactor.rollback(); // rollback if transaction fails
+                throw error; // throwing error so it propagates up to error handlers.
+            }
             return null;
         } catch (error) {
             throw error;
         }
     }
+
     async generatePassword(){
         return passwordGenerator.generatePassword();
     }

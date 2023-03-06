@@ -8,6 +8,7 @@ const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
 const controller = require('../controller/Controller');
 const {gen_navdata} = require('../util/helpers');
+const validator = require('../util/Validator');
 
 router.route('/').get(async (req, res, next) => {
     try {
@@ -30,9 +31,22 @@ router.route('/').get(async (req, res, next) => {
  * if register successfull view is rerendered with a success message else fail message
  */
 router.route('/').post(async (req, res, next) => {
+    const body = req.body;
+    const validitystatus = validator.validateRegisterForm(
+        body.username,
+        body.password,
+        body.pnr,
+        body.email,
+        body.name,
+        body.surname
+    );
+
+    if (validitystatus.length > 0) {
+        res.render('registration_page', { status: 'failed', user: body.username, causes: validitystatus.map(obj => obj.msg) });
+        return;
+    } 
     try {
-        const body = req.body;
-        const validitystatus = await controller.registerUser(
+        await controller.registerUser(
             body.username,
             body.password,
             body.pnr,
@@ -40,14 +54,7 @@ router.route('/').post(async (req, res, next) => {
             body.name,
             body.surname
         );
-
-        if (validitystatus) {
-            props = { status: 'failed', user: body.username, causes: validitystatus };
-        } else {
-            props = { status: 'was successful', user: body.username, causes: null };
-        }
-
-        res.render('registration_page', props);
+        res.render('registration_page', { status: 'was successful', user: body.username, causes: null });
     } catch (err) {
         next(err);
     }
