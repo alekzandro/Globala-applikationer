@@ -7,7 +7,7 @@ const express = require('express');
 const router = express.Router();
 const cookieHandler = require('../api/cookieHandler')
 const controller = require('../controller/Controller');
-const gen_navdata = require('../util/helpers');
+const {gen_navdata} = require('../util/helpers');
 
 router.route('/').get(async (req, res, next) => {
     try {

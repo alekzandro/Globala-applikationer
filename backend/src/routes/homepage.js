@@ -1,5 +1,5 @@
 const express = require('express')
-const gen_navdata = require('../util/helpers')
+const {gen_navdata} = require('../util/helpers')
 const router = express.Router()
 
 router.get("/",async (req, res, next) => {

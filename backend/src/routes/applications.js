@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../util/database')
 const ApplicationDAO = require('../integration/applicationsDAO');
-const gen_navdata = require('../util/helpers')
+const {gen_navdata} = require('../util/helpers')
 
 router.get('/view', async (req, res, next) => {
   try {

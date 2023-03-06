@@ -1,5 +1,7 @@
 const {RegDAO} = require('../integration/RegDAO')
 const LoginDAO = require('../integration/LoginDAO')
+
+const ApplicationDAO = require('../integration/applicationsDAO');
 const validator = require('../util/Validator')
 const passwordGenerator = require('../util/PasswordGenerator')
 const emailSender = require('../util/EmailSender')
@@ -8,6 +10,7 @@ class Controller {
     constructor () {
         this.regDAO = new RegDAO();
         this.loginDAO = new LoginDAO();
+        this.appDAO = new ApplicationDAO();
     }
 
     async loginUser(username, password){
@@ -63,6 +66,14 @@ class Controller {
     async testDatabaseConnection (){
         try {
             await this.regDAO.testConnection();
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async get_competencies (){
+        try {
+            return await this.appDAO.getCompetencies();
         } catch (error) {
             throw error;
         }

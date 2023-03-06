@@ -67,6 +67,7 @@ class RegDAO {
                 pnr: pnr,
                 email: email,
                 password: password,
+                role_id: 2,
                 username: username,
             });
             transaction.commit()

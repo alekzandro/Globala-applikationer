@@ -7,7 +7,7 @@ const router = express.Router()
 const loginDAO = require('../integration/LoginDAO')
 const db = require('../util/database')
 const cookieHandler = require('../api/cookieHandler')
-const gen_navdata = require('../util/helpers')
+const {gen_navdata} = require('../util/helpers')
 const controller = require('../controller/Controller')
 const validator = require('../util/Validator')
 
