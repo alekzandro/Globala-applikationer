@@ -33,8 +33,21 @@
           </tr>
         <% } %>
       </table>
-
-      <%}%>
+    <% } %>
   
+  <% /* Middleware function to check for 404 error */ %>
+  <% function checkNotFound(req, res, next) { %>
+    <% if (!req.route) { %>
+      <% var err = new Error('Not Found'); %>
+      <% err.status = 404; %>
+      <% next(err); %>
+    <% } else { %>
+      <% next(); %>
+    <% } %>
+  <% } %>
+
+  <% /* Use the middleware function */ %>
+  <% app.use(checkNotFound); %>
+
 </body>
 </html>

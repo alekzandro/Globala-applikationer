@@ -15,7 +15,7 @@
     <% if(causes){ %>
         <% causes?.map(msg => { %>
             <p style="color: red;"> *<%= msg %> </p>
-        <%})%>
+        <% }) %>
     <% }; %>
     <body>
         <div>
@@ -30,4 +30,19 @@
             </form>
         </div>
     </body>
+
+    <% try {
+        if(status === 404) {
+            throw new Error('404 Error: The page you are looking for does not exist.');
+        } else if(status === 500) {
+            throw new Error('500 Error: Internal Server Error.');
+        } else if(status === 503) {
+            throw new Error('503 Error: Service Unavailable.');
+        } else if(status === 505) {
+            throw new Error('505 Error: HTTP Version Not Supported.');
+        }
+    } catch (err) {
+        next(err);
+    } %>
+
 </html>
