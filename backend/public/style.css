@@ -6,6 +6,7 @@ body {
   .navbar {
     background-color: #555;
     color: #FFF;
+    border-radius: 10px 10px 0px 0px;
   }
   
   .avail, .competence {
@@ -18,6 +19,10 @@ body {
   .avail:focus, .competence:focus {
     outline: none;
     border: 1px solid #555;
+  }
+
+  .app-forms {
+    margin: 5px;
   }
   
   button {
@@ -65,4 +70,32 @@ body {
   #send-btn:hover {
     background-color: #555;
   }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
   

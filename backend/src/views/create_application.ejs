@@ -3,33 +3,35 @@
     <%- include('partials/header') %>
     <body>
         <%- include('partials/navbar', navbardata )%>
-        <div id="av-form">
-            <label for="availability">Add Availability</label>
-            <p>
-                From: <input type="date" class="avail" id="availability" name="from"
-                min="<%= start_date%>" value="<%= start_date%>"/>
-            </p>
-            <p>
-                To: <input type="date" class="avail" id="availability" name="to"
-                min="<%= start_date%>" value="<%= start_date%>"/>
-            </p>
-            <button onclick="add_avail()">Add availability</button>
-        </div>
-        <div id="comp-form">
-            <label for="competence"> Add Competence </label>
-            <p>
-                Competency: <select id="competence" class="competence" name="competence">
-                    <% comps.map(c => { %>
-                        <option value="<%= c.id %>"><%= c.name %></option>
-                    <%}) %>
-                </select>
-            </p>
-            <p>Years of experience: <input type="number" class="competence" name="exp" id="exp"/></p>
-            <button onclick="add_comp()">Add competency</button>
-        </div>
-        <div id="review-box">
-            <div id="review" style="border: 1px solid" hidden></div>
-            <p><button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button></p>
+        <div class="app-forms">
+            <div id="av-form">
+                <label for="availability">Add Availability</label>
+                <p>
+                    From: <input type="date" class="avail" id="availability" name="from"
+                    min="<%= start_date%>" value="<%= start_date%>"/>
+                </p>
+                <p>
+                    To: <input type="date" class="avail" id="availability" name="to"
+                    min="<%= start_date%>" value="<%= start_date%>"/>
+                </p>
+                <button onclick="add_avail()">Add availability</button>
+            </div>
+            <div id="comp-form">
+                <label for="competence"> Add Competence </label>
+                <p>
+                    Competency: <select id="competence" class="competence" name="competence">
+                        <% comps.map(c => { %>
+                            <option value="<%= c.id %>"><%= c.name %></option>
+                        <%}) %>
+                    </select>
+                </p>
+                <p>Years of experience: <input type="number" class="competence" name="exp" id="exp"/></p>
+                <button onclick="add_comp()">Add competency</button>
+            </div>
+            <div id="review-box">
+                <div id="review" style="border: 1px solid; margin: 5px;" hidden></div>
+                <p><button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button></p>
+            </div>
         </div>
     </body>
     <script>
