@@ -39,7 +39,7 @@ class RegDAO {
     }
 
     async findPersonByIdentifiers (username=null, email=null, pnr=null) {
-        const transaction = sequelize.transaction();
+        const transaction = await sequelize.transaction();
         try {
             const validIdentifiers = [{username: username},{email: email},{pnr: pnr}].filter(elem => elem[Object.keys(elem)[0]] !== null)
             if (validIdentifiers.length === 0) return null;
@@ -48,7 +48,7 @@ class RegDAO {
                     [Op.or]: validIdentifiers
                 }
             });
-            transaction.commit()
+            transaction.commit();
             if (foundPerson.length === 0) return null;
             return this.createPersonDTO(foundPerson[0]);
         } catch (error){
