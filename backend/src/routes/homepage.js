@@ -2,9 +2,9 @@ const express = require('express')
 const gen_navdata = require('../util/helpers')
 const router = express.Router()
 
-router.get("/", (req, res) => {
+router.get("/",async (req, res, next) => {
     try {
-        const navdata = gen_navdata(req);
+        navdata = gen_navdata(req);
         res.render('homepage', navdata);
       } catch (err) {
         next(err);

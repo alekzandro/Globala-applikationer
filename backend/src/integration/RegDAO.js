@@ -25,11 +25,11 @@ class RegDAO {
     }
 
     async findPersonById (person_id) {
-        const transaction = sequelize.transaction();
         try {
+            const transaction = await sequelize.transaction();
             const foundPerson = await Person.findByPk(person_id);
             transaction.commit()
-            if (!foundPerson) return null;
+            if (foundPerson.length === 0) return null;
             return this.createPersonDTO(foundPerson);
         } catch (error) {
             transaction.rollback();
