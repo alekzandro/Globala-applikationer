@@ -1,3 +1,7 @@
+/*
+In the findApplications method, we added an error handling for when no person is found in the database
+*/ 
+
 
 const Person = require('../model/Person');
 const Competence = require('../model/Competence');
@@ -12,24 +16,22 @@ class ApplicationDAO {
 
 
     async findApplications(nrOfApplications) {
-        try {
-
-        
-           
+        const transaction = sequelize.transaction();
+        try {       
             const result = await Person.findAll();
-            console.log(result[0])
-            const applications = []
-            for(let i =0; i < nrOfApplications; i++){
-                applications[i] = this.createApplicationDTO(result[i], "test", "test")
-               
+            if (result.length === 0) {
+                throw new Error("No person found.");
             }
-            
-            return applications
-
-
-           
+            const applications = [];
+            for (let i = 0; i < nrOfApplications && i < result.length; i++) {
+                applications[i] = this.createApplicationDTO(result[i], "test", "test");
+            }
+            transaction.commit();            
+            return applications           
         } catch (error){
-            throw error;
+            transaction.rollback();
+            console.log(error);
+            throw new Error("Failed to retrieve applications.");
         }
     }
 
@@ -54,4 +56,6 @@ class ApplicationDAO {
     }
 }
 
-module.exports = ApplicationDAO
+module.exports = ApplicationDAO; 
+
+

@@ -1,7 +1,10 @@
 const {RegDAO} = require('../integration/RegDAO')
 const LoginDAO = require('../integration/LoginDAO')
-const validator = require('../util/Validator');
+
 const ApplicationDAO = require('../integration/applicationsDAO');
+const validator = require('../util/Validator')
+const passwordGenerator = require('../util/PasswordGenerator')
+const emailSender = require('../util/EmailSender')
 
 class Controller {
     constructor () {
@@ -12,7 +15,7 @@ class Controller {
 
     async loginUser(username, password){
        const user = await this.loginDAO.findUser(username)
-       console.log(user)
+      
        if(await this.loginDAO.hasPassword(user)){
         console.log("In here!")
         return await this.loginDAO.checkPassword(user, password)
@@ -24,6 +27,15 @@ class Controller {
     async setPassword(personnumber, password) {
         this.loginDAO.setPassword(personnumber, password)
     }
+
+    async findUserByEmail(email){
+        return await this.loginDAO.findUserByEmail(email)
+    }
+
+    async sendPasswordEmail(password, recipient){
+        emailSender.sendPasswordEmail(password, recipient)
+    }
+
 
     async registerUser (username, password, pnr, email, name, surname){
         try {
@@ -37,6 +49,11 @@ class Controller {
             throw error;
         }
     }
+    async generatePassword(){
+        return passwordGenerator.generatePassword();
+    }
+
+
 
     async getUserById (person_id){
         try {
