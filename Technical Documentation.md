@@ -73,7 +73,7 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 - [Insert any relevant contribution guidelines or code of conduct]
 
 ## Conclusion
-This technical documentation provides a comprehensive overview of [Project Name] and its technical requirements, architecture, development methodologies, and testing and deployment procedures. It is intended to provide developers with a clear understanding of the project and its requirements, as well as any necessary information for contributing to the project.
+This technical documentation provides a comprehensive overview of Recruitment Platform  and its technical requirements, architecture, development methodologies, and testing and deployment procedures. It is intended to provide developers with a clear understanding of the project and its requirements, as well as any necessary information for contributing to the project.
 
 ## License
 This project is licensed under the [insert license name] License - see the [insert LICENSE.md file path] file for details.
