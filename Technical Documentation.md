@@ -47,6 +47,7 @@ The purpose of this document is to provide technical documentation for Recruitme
 
 ## Deployment
 - We have used Heroku to deploy our application.
+- Here comes the link to the website in Heroku:  https://recruitpark.herokuapp.com/
 
 
 ## Contributing
