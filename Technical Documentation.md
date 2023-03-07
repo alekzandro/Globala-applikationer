@@ -8,8 +8,11 @@ The purpose of this document is to provide technical documentation for Recruitme
 - [Insert any prerequisites or dependencies required for the project]
 
 ### Installation
-1. Clone the project from GitHub using the command: `git clone [insert GitHub repository URL]`
-2. Install any necessary dependencies using the command: `[insert command for dependency installation]`
+1. Clone the project from GitHub using the command: `git clone https://github.com/alekzandro/Globala-applikationer.git
+2. Install any necessary dependencies using the following commands: 
+   sudo apt-get install postgresql-12   (to install postgresql-12)
+   sudo createuser -s postgres          (to create a user in postgres)
+
 3. [Insert any additional installation instructions, such as setting up the environment]
 
 ### Running the Project
@@ -23,17 +26,14 @@ The purpose of this document is to provide technical documentation for Recruitme
 - ![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
 
 ### Front-end
-- [Insert information about the front-end architecture]
-- [Insert any relevant front-end frameworks, libraries, or technologies used]
-- [Insert any notable features or functions of the front-end]
-
+- We have chosen Server-side rendering with Express and EJS so the rendering of view happens in the server side with views implemented in ejs.
 ### Back-end
-- [Insert information about the back-end architecture]
+- We have built the back-end according to MVC architecture
 - [Insert any relevant back-end frameworks, libraries, or technologies used]
 - [Insert any notable features or functions of the back-end]
 
 ### Database
-- [Insert information about the database architecture]
+- Choice of database: Relationsdatabas med SQL.
 - [Insert any relevant database frameworks, libraries, or technologies used]
 - [Insert any notable features or functions of the database]
 
@@ -46,8 +46,8 @@ The purpose of this document is to provide technical documentation for Recruitme
 - [Insert any relevant testing frameworks, libraries, or technologies used, such as Jest, Mocha, or Selenium]
 
 ## Deployment
-- [Insert information about the deployment methodologies used]
-- [Insert any relevant deployment frameworks, libraries, or technologies used, such as AWS, Docker, or Kubernetes]
+- We have used Heroku to deploy our application.
+
 
 ## Contributing
 - [Insert information about how to contribute to the project]
