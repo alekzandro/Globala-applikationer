@@ -20,6 +20,7 @@
                 <label for="competence"> Add Competence </label>
                 <p>
                     Competency: <select id="competence" class="competence" name="competence">
+                        <option disabled selected value> -- Select a competency --</option>
                         <% comps.map(c => { %>
                             <option value="<%= c.id %>"><%= c.name %></option>
                         <%}) %>
