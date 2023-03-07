@@ -18,8 +18,19 @@ system that can easily be expanded with new functionality.The system distinguish
 3. [Insert any additional installation instructions, such as setting up the environment]
 
 ### Running the Project
-1. Navigate to the project directory
-2. Run the command: `npm run dev`
+Navigate to the backend folder in the project directory, you can run:
+
+- `npm install dev`
+- `npm run dev`
+
+### Installing PostgreSQL:
+For Linux terminal:
+- `sudo apt update`
+- `sudo apt-get install postgresql-12`
+- `sudo createuser -s postgres`
+- `psql -U postgress` (to get access to psql)
+
+For windows : see https://www.guru99.com/download-install-postgresql.html
 3. [Insert any additional instructions for running the project, such as setting environment variables]
 
 ## Architecture
