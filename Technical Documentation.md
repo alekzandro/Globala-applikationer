@@ -50,6 +50,11 @@ system that can easily be expanded with new functionality.The system distinguish
 ## Deployment
 - We have used Heroku to deploy our application.
 - Here comes the link to the website in Heroku:  https://recruitpark.herokuapp.com/
+- The deployed application works appropriately using the following browsers, you’re free to choose any version:
+ Edge
+ Firefox
+ Chrome
+ Safari
 
 
 ## Contributing
