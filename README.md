@@ -1,4 +1,4 @@
-# Recruitment Platforms
+# Recruitment Platform
 * Backend folder: express application.
 * Database folder: database related files.
 
