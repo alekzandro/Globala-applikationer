@@ -4,13 +4,21 @@
 
 
 
-## Available Scripts
+## Available Scripts to run the project
 
 In the project directory, you can run:
 
-### `ǹpm install dev`
+### `npm install dev`
 ### `npm start`
 
+### Installing PostgreSQL:
+For Linux terminal:
+### sudo apt update
+### sudo apt-get install postgresql-12
+### sudo createuser -s postgres
+### psql -U postgress (to get access to psql)
+
+For windows : see https://www.guru99.com/download-install-postgresql.html
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
