@@ -165,7 +165,7 @@
 
         async function post_application (event){
             event.preventDefault();
-            if (competencies.length === 0 || availabilities.length === 0) {
+            if (competencies.length === 0 && availabilities.length === 0) {
                 alert ("Please enter availibilities and competencies!")
                 return;
             }
