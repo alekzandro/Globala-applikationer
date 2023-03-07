@@ -46,11 +46,54 @@ app.get('/', (req, res, next) => {
 
 // Get request for nonexistant route, causes error
 app.get('*', (req, res, next) => {
-    next(new Error('page_not_found'));
+    const error = new Error('Page Not Found');
+    error.status = 404;
+    next(error);
 });
+
 const db = require("./util/database")
 db.authenticate().then(() => console.log('Database connected!')).catch(err => console.log(err))
 
-app.use(Logerror);
+app.use((error, req, res, next) => {
+    if (error.status === 404) {
+        res.status(404).json({message: 'Page not found'});
+    } else if (error.status === 500) {
+        res.status(500).json({message: 'Internal Server Error'});
+    } else if (error.status === 503) {
+        res.status(503).json({message: 'Service Unavailable'});
+    } else if (error.status === 505) {
+        res.status(505).json({message: 'HTTP Version Not Supported'});
+    } else {
+        Logerror(error, req, res, next);
+    }
+});
 
-module.exports = app;
+// Test database connection
+sequelize
+  .authenticate()
+  .then(() => {
+    logger.info('Successfully connected to database.');
+  })
+  .catch((err) => {
+    logger.error('Unable to connect to the database:', err);
+    process.exit(1);
+  });
+
+
+
+// Handle 404, 500, 503, and 505 errors
+router.use(function(err, req, res, next) {
+    if (err.status === 404) {
+      res.status(404).send('404: Page not found');
+    } else if (err.status === 500) {
+      res.status(500).send('500: Internal Server Error');
+    } else if (err.status === 503) {
+      res.status(503).send('503: Service Unavailable');
+    } else if (err.status === 505) {
+      res.status(505).send('505: HTTP Version Not Supported');
+    } else {
+      next(err);
+    }
+  });
+
+  module.exports = app;
