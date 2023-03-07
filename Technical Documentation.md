@@ -19,8 +19,8 @@ The purpose of this document is to provide technical documentation for Recruitme
 
 ## Architecture
 ### Overview
-- [Insert a brief overview of the project's architecture]
-- [Insert a high-level diagram of the project's architecture]
+- Choice of architecture:Server-side rendering with Express and EJS.
+- ![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
 
 ### Front-end
 - [Insert information about the front-end architecture]
