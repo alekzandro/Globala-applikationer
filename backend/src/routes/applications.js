@@ -8,7 +8,7 @@ router.get('/view', async (req, res, next) => {
   try {
     const nrOfApplications = req.query.nrOfApplications;
     navdata = gen_navdata(req)
-    if(req.auth){
+    if(req.auth && req.auth.role_id === 1){
       const application = new ApplicationDAO(db)
       const applications = await application.findApplications(nrOfApplications);
       console.log(applications)
