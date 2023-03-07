@@ -5,7 +5,7 @@
         <%- include('partials/navbar', navbardata )%>
         <div class="app-forms">
             <div id="av-form">
-                <label for="availability">Add Availability</label>
+                <label for="availability">Add employment availability period below</label>
                 <p>
                     From: <input type="date" class="avail" id="availability" name="from"
                     min="<%= start_date%>"/>
@@ -17,7 +17,7 @@
                 <button onclick="add_avail()">Add availability</button>
             </div>
             <div id="comp-form">
-                <label for="competence"> Add Competence </label>
+                <label for="competence">Pick relevant competency and years of experience below</label>
                 <p>
                     Competency: <select id="competence" class="competence" name="competence">
                         <option disabled selected value> -- Select a competency --</option>
@@ -166,7 +166,7 @@
         async function post_application (event){
             event.preventDefault();
             if (competencies.length === 0 && availabilities.length === 0) {
-                alert ("Please enter availibilities and competencies!")
+                alert ("Please enter availibilities or competencies!")
                 return;
             }
             const btn = document.getElementById('send-btn')
