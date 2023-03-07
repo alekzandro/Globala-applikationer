@@ -17,7 +17,7 @@ The purpose of this document is to provide technical documentation for Recruitme
 
 ### Running the Project
 1. Navigate to the project directory
-2. Run the command: `[insert command for running the project]`
+2. Run the command: `npm run dev`
 3. [Insert any additional instructions for running the project, such as setting environment variables]
 
 ## Architecture
