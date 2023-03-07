@@ -9,7 +9,7 @@
 In the project directory, you can run:
 
 ### `npm install dev`
-### `npm start`
+### `npm run dev`
 
 ### Installing PostgreSQL:
 For Linux terminal:
