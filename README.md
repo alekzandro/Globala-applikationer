@@ -6,17 +6,17 @@
 
 ## Available Scripts to run the project
 
-In the project directory, you can run:
+In the project directory in the backend folder, you can run:
 
-### `npm install dev`
-### `npm run dev`
+- `npm install dev`
+- `npm run dev`
 
 ### Installing PostgreSQL:
 For Linux terminal:
-### sudo apt update
-### sudo apt-get install postgresql-12
-### sudo createuser -s postgres
-### psql -U postgress (to get access to psql)
+- `sudo apt update`
+- `sudo apt-get install postgresql-12`
+- `sudo createuser -s postgres`
+- `psql -U postgress` (to get access to psql)
 
 For windows : see https://www.guru99.com/download-install-postgresql.html
 
