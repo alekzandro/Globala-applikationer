@@ -20,15 +20,15 @@ system that can easily be expanded with new functionality.The system distinguish
 ### Running the Project
 Navigate to the backend folder in the project directory, you can run:
 
-- `npm install dev`
-- `npm run dev`
+1. `npm install`
+2. `npm run dev`
 
 ### Installing PostgreSQL:
 For Linux terminal:
-- `sudo apt update`
-- `sudo apt-get install postgresql-12`
-- `sudo createuser -s postgres`
-- `psql -U postgress` (to get access to psql)
+1. `sudo apt update`
+2. `sudo apt-get install postgresql-12`
+3. `sudo createuser -s postgres`
+4. `psql -U postgress` (to get access to psql)
 
 For windows : see https://www.guru99.com/download-install-postgresql.html
 3. [Insert any additional instructions for running the project, such as setting environment variables]
