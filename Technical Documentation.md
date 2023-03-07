@@ -1,7 +1,9 @@
 # Recruitment Platform technical documentation 
 
 ## Introduction
-The purpose of this document is to provide technical documentation for Recruitment Platform, an [insert project description]. This document is intended for developers who will be working on the project and is meant to provide a comprehensive understanding of the project's architecture, development methodologies, and technical requirements.
+The purpose of this document is to provide technical documentation for Recruitment Platform, a web-based application to facilitate a recruitment process for a company , they benefit from this web based recruitment tool.
+Recruitment Platform intendend to be a robust, scalable and well-documented
+system that can easily be expanded with new functionality.The system distinguishes between two types of users, applicants and recruiters. An applicant applies for a position within the company while a recruiter manages applications. The system is divided into two parts: The registration of job applications and the administration of applications.. This document is intended for developers who will be working on the project and is meant to provide a comprehensive understanding of the project's architecture, development methodologies, and technical requirements.
 
 ## Getting Started
 ### Prerequisites
