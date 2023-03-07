@@ -1,7 +1,7 @@
-# Technical Documentation for Recruitment Platform applicationen:
+# Recruitment Platform technical documentation 
 
 ## Introduction
-The purpose of this document is to provide technical documentation for [Project Name], an [insert project description]. This document is intended for developers who will be working on the project and is meant to provide a comprehensive understanding of the project's architecture, development methodologies, and technical requirements.
+The purpose of this document is to provide technical documentation for Recruitment Platform, an [insert project description]. This document is intended for developers who will be working on the project and is meant to provide a comprehensive understanding of the project's architecture, development methodologies, and technical requirements.
 
 ## Getting Started
 ### Prerequisites
