@@ -1,8 +1,19 @@
+/**
+
+    Sequelize database instance
+    @typedef {Object} SequelizeInstance
+    @property {Function} authenticate - Authenticates connection
+    @property {Function} define - Defines a new model
+    */
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
-// Generated sequalize instance depends on if we are on production
-// or a dev runtime.
+/**
+
+    Creates a new Sequelize instance depending on whether the runtime is production or development
+
+    @type {SequelizeInstance} Sequelize instance
+    */
 module.exports = process.env.DATABASE_URL? 
 new Sequelize(process.env.DATABASE_URL, {
     dialect: "postgres",

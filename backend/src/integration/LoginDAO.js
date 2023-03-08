@@ -1,14 +1,20 @@
-/*
-We have error handling blocks with console.error statements to log the error details in case any errors occur during database operations. 
-We have also await before the transaction.rollback() function calls to ensure that the rollback operation is completed before throwing the error.
-*/ 
+/**
+
+    Represents a data access object for handling user authentication and login functionality.
+    */
 const Person = require('../model/Person');
 const PersonDTO = require('../model/PersonDTO');
 const sequelize = require("../util/database");
 
 class LoginDAO {
   
+/**
 
+    Finds a user by ID and returns a PersonDTO object for that user.
+    @param {number} id - The ID of the user to find.
+    @returns {Promise<PersonDTO|null>} - A promise that resolves to a PersonDTO object for the user with the given ID, or null if no user is found.
+    @throws {Error} - If there was an error while finding the user.
+    */
     async findUser(id) {
 
         const transaction = await sequelize.transaction();
@@ -32,7 +38,12 @@ class LoginDAO {
             throw error;
         }
     }
+    /**
 
+    Returns true if the given user has a password, otherwise false.
+    @param {Object} user - The user object to check for a password.
+    @returns {Promise<boolean>} - A promise that resolves to true if the user has a password, otherwise false.
+    */
     async hasPassword(user){
         if(user && user.password){
             return true;
@@ -40,7 +51,13 @@ class LoginDAO {
             return false;
         }
     }
+    /**
 
+    Finds a user by email and returns a PersonDTO object for that user.
+    @param {string} email - The email address of the user to find.
+    @returns {Promise<PersonDTO|null>} - A promise that resolves to a PersonDTO object for the user with the given email, or null if no user is found.
+    @throws {Error} - If there was an error while finding the user.
+    */
     async findUserByEmail(email){
         const transaction = await sequelize.transaction();
         try {
@@ -60,7 +77,13 @@ class LoginDAO {
         }
        
     }
+    /**
 
+    Checks if the given password matches the user's password.
+    @param {Object} user - The user object to check the password for.
+    @param {string} password - The password to check.
+    @returns {Promise<Object|null>} - A promise that resolves to the user object if the password matches, otherwise null.
+    */
     async checkPassword(user, password){
         if(user && user.password == password){
             return user;          
@@ -68,7 +91,16 @@ class LoginDAO {
             return null;
          }
     }
+/**
 
+    Sets the password for a user with the specified personal number.
+    @async
+    @function
+    @param {string} pnr - The personal number of the user whose password is being set.
+    @param {string} password - The new password for the user.
+    @returns {Promise<number>} - The number of affected rows.
+    @throws {Error} - Throws an error if an error occurs while setting the password.
+    */
     async setPassword(pnr, password){
         const transaction = await sequelize.transaction();
         try {
@@ -83,7 +115,13 @@ class LoginDAO {
         }       
     }
 
+/**
 
+    Creates a PersonDTO object from a Person model object.
+    @function
+    @param {Object} personModel - The Person model object.
+    @returns {PersonDTO} - The PersonDTO object.
+    */
 
     createPersonDTO(personModel) {
         return new PersonDTO(

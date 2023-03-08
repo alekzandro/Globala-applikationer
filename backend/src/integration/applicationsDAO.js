@@ -1,7 +1,8 @@
-/*
-In the findApplications method, we added an error handling for when no person is found in the database
-*/ 
+/**
 
+    ApplicationDAO class provides methods to handle applications related data access.
+    @class
+    */
 
 const Person = require('../model/Person');
 const Competence = require('../model/Competence');
@@ -15,7 +16,15 @@ const sequelize = require('../util/database')
 
 class ApplicationDAO {
 
+/**
 
+    Retrieves applications from the database.
+    @async
+    @function
+    @param {number} nrOfApplications - The number of applications to retrieve.
+    @throws {Error} If no person is found.
+    @returns {Promise<Array<ApplicationDTO>>} An array of ApplicationDTOs.
+    */
     async findApplications(nrOfApplications) {
         const transaction = await sequelize.transaction();
         try {       
@@ -35,7 +44,14 @@ class ApplicationDAO {
             throw new Error("Failed to retrieve applications.");
         }
     }
+/**
 
+    Retrieves competencies from the database.
+    @async
+    @function
+    @returns {Promise<Array<competenceDTO>>} An array of competenceDTOs.
+    @throws {Error} If an error occurs while retrieving competencies.
+    */
     async getCompetencies () {
         try {
             const result = await Competence.findAll();
@@ -45,7 +61,15 @@ class ApplicationDAO {
             throw error;
         }
     }
+/**
 
+    Creates an ApplicationDTO from Person, Competence_profile, and Availability models.
+    @function
+    @param {Person} personModel - A Person model instance.
+    @param {Competence_profile} competence_profile_model - A Competence_profile model instance.
+    @param {Availability} availabilityModel - An Availability model instance.
+    @returns {ApplicationDTO} An ApplicationDTO instance.
+    */
     createApplicationDTO(personModel, competence_profile_model, availabilityModel) {
         return new ApplicationDTO(
             personModel.name,

@@ -17,6 +17,16 @@ app.use(bodyparser.urlencoded({extended: true}));
 
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
+/**
+
+    Serves static files.
+    @name static
+    @function
+    @memberof module:app
+    @inner
+    @param {string} route - The route where the static files are served.
+    @param {string} directory - The directory where the static files are stored.
+    */
 app.use('/static',express.static(path.join(ROOT_DIR, 'public')))
 
 const loginRouter = require("./routes/login")
@@ -30,9 +40,23 @@ const registrationRouter = require('./routes/registration')
 const applicationsRouter = require('./routes/applications')
 const logoutRouter = require('./routes/logout')
 const createApplicationRouter = require('./routes/createapplication')
+/**
 
+    Middleware for checking authentication status.
+    @name authCheck
+    @function
+    @memberof module:app
+    @inner
+    */
 app.use(authCheck); // important this comes before any routers!
+/**
 
+    Route for rendering the homepage.
+    @name homepageRouter
+    @function
+    @memberof module:app
+    @inner
+    */
 app.use("/", homepageRouter)
 app.use("/applicant", applicantsRouter)
 app.use("/applications", applicationsRouter)
@@ -40,7 +64,14 @@ app.use('/register',registrationRouter);
 app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/createApplication', createApplicationRouter)
+/**
 
+    Route for handling a successful API call.
+    @name getSuccess
+    @function
+    @memberof module:app
+    @inner
+    */
 app.get('/', (req, res, next) => {
     jsonResponse = {'success':{'msg': 'api call success!'}}
     res.json(jsonResponse);

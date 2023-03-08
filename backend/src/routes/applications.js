@@ -3,7 +3,17 @@ const router = express.Router();
 const db = require('../util/database')
 const ApplicationDAO = require('../integration/applicationsDAO');
 const {gen_navdata} = require('../util/helpers')
+/**
 
+    Route serving view of applications.
+    @name get/view
+    @function
+    @memberof module:routes/application
+    @param {Object} req - Express request object.
+    @param {Object} res - Express response object.
+    @param {function} next - Express next middleware function.
+    @throws {Error} If there is an error while finding applications.
+*/
 router.get('/view', async (req, res, next) => {
   try {
     const nrOfApplications = req.query.nrOfApplications;
@@ -20,7 +30,15 @@ router.get('/view', async (req, res, next) => {
     next(error);
   }
 });
+/**
 
+    Route serving application creation page.
+    @name get/create
+    @function
+    @memberof module:routes/application
+    @param {Object} req - Express request object.
+    @param {Object} res - Express response object.
+    */
 router.get('/create', (req, res) => {
   navdata = gen_navdata(req)
   if(req.auth){

@@ -10,7 +10,17 @@ const cookieHandler = require('../api/cookieHandler')
 const {gen_navdata} = require('../util/helpers')
 const controller = require('../controller/Controller')
 const validator = require('../util/Validator')
-
+/**
+ * Render the login page if the user is not authenticated, otherwise redirect to homepage.
+ *
+ * @name get/login
+ * @function
+ * @memberof module:routers/LoginRouter
+ * @inner
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {undefined}
+ */
 
 router.get("/", (req, res) => {
     navdata = gen_navdata(req)
@@ -21,7 +31,19 @@ router.get("/", (req, res) => {
     res.render("login.ejs", {navdata: navdata, incorrect: false})
     }
 })
-
+/**
+ * Handle the login request and render the homepage if the login is successful.
+ * If the login fails, the login page is rendered with an error message.
+ * If an error occurs, the server will respond with a 500 status code and an error message.
+ *
+ * @name post/login
+ * @function
+ * @memberof module:routers/LoginRouter
+ * @inner
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {undefined}
+ */
 router.post("/", async (req, res) => {
     const username = req.body.username
     const password = req.body.password
@@ -46,7 +68,20 @@ router.post("/", async (req, res) => {
   }
 })
 
-
+/**
+ * Handle the password reset request.
+ * If the email provided is valid, a new password is generated and sent to the user via email.
+ * If the email provided is invalid, the getpassword page is rendered with an error message.
+ * If an error occurs, the server will respond with a 500 status code and an error message.
+ *
+ * @name post/login/getpassword
+ * @function
+ * @memberof module:routers/LoginRouter
+ * @inner
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {undefined}
+ */
 router.post('/getpassword',async (req, res) => {
     try {
     navdata = gen_navdata(req)
