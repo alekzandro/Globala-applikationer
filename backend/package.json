@@ -10,7 +10,7 @@
     "lint": "eslint src/"
   },
   "production": {
-    "use_env_variable":"DATABASE_URL"
+    "use_env_variable": "DATABASE_URL"
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +23,8 @@
     "nodemailer": "^6.9.1",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "eslint": "^8.33.0",

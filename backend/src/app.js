@@ -4,6 +4,8 @@ const Logerror = require('./util/ErrorHandler');
 const bodyparser = require('body-parser');
 const authCheck = require('./api/middleware/authcheck')
 require('dotenv').config();
+const ob = require('./util/Logger')
+const logger = ob.logger;
 
 const ROOT_DIR = path.join(__dirname, '..');
 
@@ -69,8 +71,7 @@ app.use((error, req, res, next) => {
 });
 
 // Test database connection
-sequelize
-  .authenticate()
+db.authenticate()
   .then(() => {
     logger.info('Successfully connected to database.');
   })
@@ -82,7 +83,7 @@ sequelize
 
 
 // Handle 404, 500, 503, and 505 errors
-router.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) {
     if (err.status === 404) {
       res.status(404).send('404: Page not found');
     } else if (err.status === 500) {
