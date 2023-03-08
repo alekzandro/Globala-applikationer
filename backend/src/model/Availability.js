@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../../src/util/database");
 
-const Availability = sequelize.define("availability", {
+const Availability = sequelize.define("availabilities", {
     availability_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

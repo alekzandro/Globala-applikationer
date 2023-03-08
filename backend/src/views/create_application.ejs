@@ -5,21 +5,22 @@
         <%- include('partials/navbar', navbardata )%>
         <div class="app-forms">
             <div id="av-form">
-                <label for="availability">Add Availability</label>
+                <label for="availability">Add employment availability period below</label>
                 <p>
                     From: <input type="date" class="avail" id="availability" name="from"
-                    min="<%= start_date%>" value="<%= start_date%>"/>
+                    min="<%= start_date%>"/>
                 </p>
                 <p>
                     To: <input type="date" class="avail" id="availability" name="to"
-                    min="<%= start_date%>" value="<%= start_date%>"/>
+                    min="<%= start_date%>"/>
                 </p>
                 <button onclick="add_avail()">Add availability</button>
             </div>
             <div id="comp-form">
-                <label for="competence"> Add Competence </label>
+                <label for="competence">Pick relevant competency and years of experience below</label>
                 <p>
                     Competency: <select id="competence" class="competence" name="competence">
+                        <option disabled selected value> -- Select a competency --</option>
                         <% comps.map(c => { %>
                             <option value="<%= c.id %>"><%= c.name %></option>
                         <%}) %>
@@ -28,9 +29,13 @@
                 <p>Years of experience: <input type="number" class="competence" name="exp" id="exp"/></p>
                 <button onclick="add_comp()">Add competency</button>
             </div>
+            <div id="fetch-msg" hidden style="color:red"></div>
             <div id="review-box">
                 <div id="review" style="border: 1px solid; margin: 5px;" hidden></div>
-                <p><button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button></p>
+                <p>
+                    <button id="send-btn" onclick="post_application(event)" value="<%= path %>">Send application</button>
+                    <button id="clear-btn" onclick="clear_application()">Clear Application</button>
+                </p>
             </div>
         </div>
     </body>
@@ -75,6 +80,12 @@
                 if (already_exists(competencies, obj)) return;
                 competencies = [...competencies, {competency: state.competence, experience: state.exp}]
             }
+            upd_review_box();
+        }
+
+        function clear_application() {
+            availabilities = [];
+            competencies = [];
             upd_review_box();
         }
 
@@ -155,8 +166,8 @@
 
         async function post_application (event){
             event.preventDefault();
-            if (competencies.length === 0 || availabilities.length === 0) {
-                alert ("Please enter availibilities and competencies!")
+            if (competencies.length === 0 && availabilities.length === 0) {
+                alert ("Please enter availibilities or competencies!")
                 return;
             }
             const btn = document.getElementById('send-btn')
@@ -170,9 +181,23 @@
             }
             try {
                 const resp = await fetch(URL, options)
+                const jsonResp = await resp.json();
+                console.log(jsonResp)
+                if(jsonResp.success) clear_application();
+                show_fetch_msg(jsonResp.msg)
             } catch (error) {
                 console.log(error)
+                show_fetch_msg('failed due to network error');
             }
+        }
+
+        function show_fetch_msg(msg){
+            const fmsg = document.getElementById('fetch-msg');
+            fmsg.removeAttribute('hidden');
+            fmsg.innerHTML = ''
+            const text = document.createTextNode(msg)
+            fmsg.appendChild(text);
+            setTimeout(e => fmsg.setAttribute('hidden', 'hideme'), 5000)
         }
 
         avail_listener();
