@@ -9,7 +9,7 @@ router.route('/').get(async (req, res, next) => {
             const comps =  await controller.get_competencies();
             console.log(comps);
             res.header('Access-Control-Allow-Origin', '*')
-            res.render('create_application', {navbardata:gen_navdata(req), start_date: dateformat(), path:"/createApplication", comps: comps})
+            res.render('create_application', {navbardata:gen_navdata(req), start_date: dateformat(), path:"/createApplication", comps: comps, msg: "wow"})
         } else {
             res.render('homepage', {navdata:gen_navdata(req)})
         }
@@ -20,10 +20,21 @@ router.route('/').get(async (req, res, next) => {
 })
 
 router.route('/').post(async (req, res, next) => {
-    console.log("post createapp call")
-    console.log(req.body);
-    console.log(req.body.competencies)
-    res.send({msg: "received"})
+    try {
+        if (req.auth && req.auth.role_id === 2){
+            const comps =  await controller.get_competencies();
+            const result = await controller.updateApplication(req.auth.person_id, req.body.availabilities, req.body.competencies)
+            console.log(result)
+            console.log(result.msg)
+            let msg = "Update";
+            res.json(result);
+        }
+        else {
+            res.render('homepage', {navdata:gen_navdata(req)})
+        }
+    } catch (error) {
+        next(error);
+    }
 })
 
 module.exports = router;

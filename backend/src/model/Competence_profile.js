@@ -3,7 +3,7 @@ const sequelize = require("../../src/util/database");
 const Person = require("./Person")
 const Competence = require("./Competence")
 
-const Competence_profile = sequelize.define("competence_profile", {
+const Competence_profile = sequelize.define("competence_profiles", {
     competence_profile_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

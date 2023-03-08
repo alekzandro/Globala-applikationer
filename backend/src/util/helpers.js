@@ -26,4 +26,9 @@ function formatDateNow(){
     + "-" + zeroAdder(day.toString());
 }
 
-module.exports = {gen_navdata: gen_navdata, dateformat: formatDateNow};
+function equalDates(d1, d2){
+    return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth()
+    && d1.getDay() === d2.getDay();
+}
+
+module.exports = {gen_navdata: gen_navdata, dateformat: formatDateNow, equalDates: equalDates};

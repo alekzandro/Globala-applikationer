@@ -29,6 +29,7 @@
                 <p>Years of experience: <input type="number" class="competence" name="exp" id="exp"/></p>
                 <button onclick="add_comp()">Add competency</button>
             </div>
+            <div id="fetch-msg" hidden style="color:red"></div>
             <div id="review-box">
                 <div id="review" style="border: 1px solid; margin: 5px;" hidden></div>
                 <p>
@@ -180,9 +181,23 @@
             }
             try {
                 const resp = await fetch(URL, options)
+                const jsonResp = await resp.json();
+                console.log(jsonResp)
+                if(jsonResp.success) clear_application();
+                show_fetch_msg(jsonResp.msg)
             } catch (error) {
                 console.log(error)
+                show_fetch_msg('failed due to network error');
             }
+        }
+
+        function show_fetch_msg(msg){
+            const fmsg = document.getElementById('fetch-msg');
+            fmsg.removeAttribute('hidden');
+            fmsg.innerHTML = ''
+            const text = document.createTextNode(msg)
+            fmsg.appendChild(text);
+            setTimeout(e => fmsg.setAttribute('hidden', 'hideme'), 5000)
         }
 
         avail_listener();
