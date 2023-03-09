@@ -45,17 +45,17 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 ### Front-end
 - We have chosen Server-side rendering with Express and EJS so the rendering of view happens in the server side with views implemented in ejs.
 ### Back-end
-- We have built the back-end according to MVC architecture
+- We have built the back-end according to MVC architecture.
 - The following back-end frameworks, libraries, and technologies were used:
 
- -  Node.js: a JavaScript runtime environment used to build scalable network applications.
- -  Express.js: a popular Node.js web application framework used to build web applications and APIs.
- -  body-parser: a middleware used to parse incoming request bodies in a middleware before handlers.
- -  cookie-parser: a middleware used to parse cookies in a middleware before handlers.
- -  dotenv: a zero-dependency module used to load environment variables from a .env file.
- -  Sequelize: a promise-based ORM (Object Relational Mapping) used to interact with relational databases.
- -  MySQL: a popular open-source relational database management system used to store and manage data.
- -  EJS: a simple template engine that lets you generate HTML markup with plain JavaScript.
+   -  Node.js: a JavaScript runtime environment used to build scalable network applications.
+   -  Express.js: a popular Node.js web application framework used to build web applications and APIs.
+   -  body-parser: a middleware used to parse incoming request bodies in a middleware before handlers.
+   -  cookie-parser: a middleware used to parse cookies in a middleware before handlers.
+   -  dotenv: a zero-dependency module used to load environment variables from a .env file.
+   -  Sequelize: a promise-based ORM (Object Relational Mapping) used to interact with relational databases.
+   -  MySQL: a popular open-source relational database management system used to store and manage data.
+   -  EJS: a simple template engine that lets you generate HTML markup with plain JavaScript.
 
 - Notable features or functions of this back-end include:
 
