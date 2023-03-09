@@ -31,4 +31,4 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-More detailed information can be found in Globala-applikationer/Technical Documentation.md 
+More detailed information can be found in Technical Documentation.md here is the link: https://github.com/alekzandro/Globala-applikationer/blob/main/Technical%20Documentation.md 
