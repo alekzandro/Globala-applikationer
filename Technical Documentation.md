@@ -36,7 +36,7 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 ## Architecture
 ### Overview
 - Choice of architecture:Server-side rendering with Express and EJS.
-- ![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
+![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
 
 ### Front-end
 - We have chosen Server-side rendering with Express and EJS so the rendering of view happens in the server side with views implemented in ejs.
