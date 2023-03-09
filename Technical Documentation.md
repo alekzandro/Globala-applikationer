@@ -38,6 +38,10 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 - Choice of architecture:Server-side rendering with Express and EJS.
 - ![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
 
+file:///home/araman/Desktop/Screenshot%20from%202023-03-09%2010-29-03.png
+
+![plot](.///home/araman/Desktop/Screenshot%20from%202023-03-09%2010-29-03.png)
+
 ### Front-end
 - We have chosen Server-side rendering with Express and EJS so the rendering of view happens in the server side with views implemented in ejs.
 ### Back-end
@@ -51,12 +55,15 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 - [Insert any notable features or functions of the database]
 
 ## Development Methodologies
-- [Insert information about the development methodologies used]
-- [Insert any relevant software development methodologies or best practices used, such as Agile, Scrum, or Test-driven development]
+- We have used agile development methods which rely on daily real-time communication,we had improvement cycles that provide early alignment of expectations and the discovery and correction of bugs by all team members.  
+- The following figure shows our development methedology:
+
+![Screenshot from 2023-03-09 10-29-03](https://user-images.githubusercontent.com/42935270/223984461-cbfff191-c28c-4890-99d8-f51a4528a883.png)
+
 
 ## Testing
-- [Insert information about the testing methodologies used]
-- [Insert any relevant testing frameworks, libraries, or technologies used, such as Jest, Mocha, or Selenium]
+- we have performed functional testing to ensure that all of the application's features function as expected.
+- We have also performed behavioral testing to examine an app's features from the customer's point of view. 
 
 ## Deployment
 - We have used Heroku to deploy our application.
@@ -69,7 +76,6 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 
 
 ## Contributing
-- [Insert information about how to contribute to the project][Insert any relevant contribution guidelines or code of conduct].
 - Express.js was used to create this project, which offers many routes for a website.
 To process requests and authenticate users, the program makes use of a number of middleware tools.
 Sequelize is an object-relational mapper used by the app to communicate with the backend PostgreSQL database.   
@@ -126,5 +132,3 @@ Before pushing updates to users, be sure you've given them a thorough test.
 ## Conclusion
 This technical documentation provides a comprehensive overview of Recruitment Platform  and its technical requirements, architecture, development methodologies, and testing and deployment procedures. It is intended to provide developers with a clear understanding of the project and its requirements, as well as any necessary information for contributing to the project.
 
-## License
-This project is licensed under the [insert license name] License - see the [insert LICENSE.md file path] file for details.
