@@ -15,10 +15,11 @@ It would be helpful to add any other requirements or dependencies, such as speci
 
 
 ### Installation
-1. Clone the project from GitHub using the command: `git clone https://github.com/alekzandro/Globala-applikationer.git
-2. Install any necessary dependencies using the following commands: 
-   sudo apt-get install postgresql-12   (to install postgresql-12)
-   sudo createuser -s postgres          (to create a user in postgres)
+1. Clone the project from GitHub using the command: 
+  -  `git clone https://github.com/alekzandro/Globala-applikationer.git`
+3. Install any necessary dependencies using the following commands: 
+  -  `sudo apt-get install postgresql-12`   (to install postgresql-12)
+  -  `sudo createuser -s postgres`          (to create a user in postgres)
 
 ### Running the Project
 Navigate to the backend folder in the project directory, you can run:
@@ -38,7 +39,8 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 
 ## Architecture
 ### Overview
-- Choice of architecture:Server-side rendering with Express and EJS.The following shows the architecture of our back-end in addition of how the flow and design look between the components.
+- Choice of architecture:Server-side rendering with Express and EJS.
+- The following shows the architecture of our back-end in addition of how the flow and design look between the components.
  
 ![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
 
