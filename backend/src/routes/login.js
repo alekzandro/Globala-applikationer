@@ -47,9 +47,14 @@ router.post("/", async (req, res) => {
 })
 
 router.get('/getpassword', async (req, res) => {
+    navdata = gen_navdata(req);
     try {
-        navdata = gen_navdata(req);
-        res.render("getpassword", {user_pnr: null, incorrectEmail: false, navdata: navdata})
+        if (req.auth){
+            res.render('homepage', {navdata: navdata})
+        }
+        else {
+            res.render("getpassword", {user_pnr: null, incorrectEmail: false, navdata: navdata})
+        }
     } catch (error) {
         console.log("Error occurred in post('/getpassword'): ", error)
         res.status(500).send("Error occurred while trying to retrieve password. Please try again later.") 
