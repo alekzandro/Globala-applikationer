@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
     }
 })
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
     const username = req.body.username
     const password = req.body.password
     try {
@@ -42,11 +42,11 @@ router.post("/", async (req, res) => {
     }
 } catch (error) {
     console.log("Error occurred in post('/'): ", error)
-    res.status(500).send("Error occurred while trying to log in. Please try again later.")    
+    next(error);  
   }
 })
 
-router.get('/getpassword', async (req, res) => {
+router.get('/getpassword', async (req, res, next) => {
     navdata = gen_navdata(req);
     try {
         if (req.auth){
@@ -57,12 +57,12 @@ router.get('/getpassword', async (req, res) => {
         }
     } catch (error) {
         console.log("Error occurred in post('/getpassword'): ", error)
-        res.status(500).send("Error occurred while trying to retrieve password. Please try again later.") 
+        next(error);
     }
 })
 
 
-router.post('/getpassword',async (req, res) => {
+router.post('/getpassword',async (req, res, next) => {
     try {
     navdata = gen_navdata(req)
     const email = req.body.email
@@ -79,7 +79,7 @@ router.post('/getpassword',async (req, res) => {
     }
     } catch (error) {
     console.log("Error occurred in post('/getpassword'): ", error)
-    res.status(500).send("Error occurred while trying to retrieve password. Please try again later.")
+    next(error);
     }
 });
 

@@ -31,6 +31,7 @@ router.route('/').get(async (req, res, next) => {
  * if register successfull view is rerendered with a success message else fail message
  */
 router.route('/').post(async (req, res, next) => {
+    try {
     const body = req.body;
     const validitystatus = validator.validateRegisterForm(
         body.username,
@@ -45,7 +46,7 @@ router.route('/').post(async (req, res, next) => {
         res.render('registration_page', { status: 'failed', user: body.username, causes: validitystatus.map(obj => obj.msg) });
         return;
     } 
-    try {
+
         await controller.registerUser(
             body.username,
             body.password,
@@ -63,7 +64,8 @@ router.route('/').post(async (req, res, next) => {
 // Error handler
 router.use(function (err, req, res, next) {
     console.error(err.stack);
-    res.status(500).send('Something broke!');
+    const error = {status: 500}
+    next(error);
 });
 
 module.exports = router;

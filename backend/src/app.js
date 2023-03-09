@@ -43,10 +43,6 @@ app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/createApplication', createApplicationRouter)
 
-app.get('/', (req, res, next) => {
-    jsonResponse = {'success':{'msg': 'api call success!'}}
-    res.json(jsonResponse);
-});
 
 // Get request for nonexistant route, causes error
 app.get('*', (req, res, next) => {
@@ -55,22 +51,20 @@ app.get('*', (req, res, next) => {
     next(error);
 });
 
-const db = require("./util/database")
-db.authenticate().then(() => console.log('Database connected!')).catch(err => console.log(err))
-
-app.use((error, req, res, next) => {
-    if (error.status === 404) {
-        res.status(404).json({message: 'Page not found'});
-    } else if (error.status === 500) {
-        res.status(500).json({message: 'Internal Server Error'});
-    } else if (error.status === 503) {
-        res.status(503).json({message: 'Service Unavailable'});
-    } else if (error.status === 505) {
-        res.status(505).json({message: 'HTTP Version Not Supported'});
-    } else {
-        Logerror(error, req, res, next);
-    }
+// internet server error.
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  if (err.status){
+    next(err)
+  } else {
+  const error = {status: 500}
+  next(error);
+  }
 });
+
+const db = require("./util/database");
+const { gen_navdata } = require('./util/helpers');
+db.authenticate().then(() => console.log('Database connected!')).catch(err => console.log(err))
 
 // Test database connection
 db.authenticate()
@@ -87,7 +81,7 @@ db.authenticate()
 // Handle 404, 500, 503, and 505 errors
 app.use(function(err, req, res, next) {
     if (err.status === 404) {
-      res.status(404).send('404: Page not found');
+      res.status(404).render('page_not_found', {navdata: gen_navdata(req)})
     } else if (err.status === 500) {
       res.status(500).send('500: Internal Server Error');
     } else if (err.status === 503) {
