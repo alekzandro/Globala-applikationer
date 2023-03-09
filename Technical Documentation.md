@@ -75,7 +75,7 @@ For windows : see https://www.guru99.com/download-install-postgresql.html
 
 
 ## Development Methodologies
-- We have used agile development methods which rely on daily real-time communication,we had improvement cycles that provide early alignment of expectations and the discovery and correction of bugs by all team members.  
+- We have used agile development methods which rely on daily real-time communication, we had improvement cycles that provide early alignment of expectations and the discovery and correction of bugs by all team members.  
 - The following figure shows our development methedology:
 
 ![Screenshot from 2023-03-09 10-29-03](https://user-images.githubusercontent.com/42935270/223984461-cbfff191-c28c-4890-99d8-f51a4528a883.png)
