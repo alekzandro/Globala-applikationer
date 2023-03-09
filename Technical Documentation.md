@@ -7,15 +7,18 @@ system that can easily be expanded with new functionality.The system distinguish
 
 ## Getting Started
 ### Prerequisites
-- [Insert any prerequisites or dependencies required for the project]
+- Installation of PostgreSQL version 12 and creating a user in PostgreSQL. Additionally, any necessary dependencies can be installed by navigating to the backend folder in the project directory and running the following commands:
+1. `npm install`
+2. `npm run dev`
+
+It would be helpful to add any other requirements or dependencies, such as specific versions of Node.js or any other libraries used in the project.
+
 
 ### Installation
 1. Clone the project from GitHub using the command: `git clone https://github.com/alekzandro/Globala-applikationer.git
 2. Install any necessary dependencies using the following commands: 
    sudo apt-get install postgresql-12   (to install postgresql-12)
    sudo createuser -s postgres          (to create a user in postgres)
-
-3. [Insert any additional installation instructions, such as setting up the environment]
 
 ### Running the Project
 Navigate to the backend folder in the project directory, you can run:
@@ -31,11 +34,12 @@ For Linux terminal:
 4. `psql -U postgress` (to get access to psql)
 
 For windows : see https://www.guru99.com/download-install-postgresql.html
-3. [Insert any additional instructions for running the project, such as setting environment variables]
+
 
 ## Architecture
 ### Overview
-- Choice of architecture:Server-side rendering with Express and EJS.
+- Choice of architecture:Server-side rendering with Express and EJS.The following shows the architecture of our back-end in addition of how the flow and design look between the components.
+ 
 ![image](https://user-images.githubusercontent.com/42935270/223382101-55065acb-139f-4911-8a40-18660b86ef2b.png)
 
 ### Front-end
